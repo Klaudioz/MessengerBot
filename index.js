@@ -10,6 +10,15 @@ const bot = new BootBot({
   appSecret: Config.FB_APP_SECRET
 });
 
+chat.say({
+    text: 'Favorite color?',
+    buttons: [
+        { type: 'postback', title: 'Red', payload: 'FAVORITE_RED' },
+        { type: 'postback', title: 'Blue', payload: 'FAVORITE_BLUE' },
+        { type: 'postback', title: 'Green', payload: 'FAVORITE_GREEN' }
+    ]
+});
+
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
     chat.say('I am sorry. I cant receive any attachment yet');
