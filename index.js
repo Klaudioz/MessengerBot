@@ -10,7 +10,7 @@ const bot = new BootBot({
   appSecret: Config.FB_APP_SECRET
 });
 
-bot.setGreetingText(`Hello, ${user.first_name} !. Thanks for use our service`);
+bot.setGreetingText(`Hello. Thanks for use our service`);
 
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
