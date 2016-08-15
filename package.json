@@ -9,6 +9,7 @@
   "author": "klaudioz",
   "license": "ISC",
   "dependencies": {
-    "bootbot": "1.0.6"
+    "bootbot": "1.0.6",
+    "express": "^4.14.0"
   }
 }
