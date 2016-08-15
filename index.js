@@ -2,6 +2,7 @@
 
 const BootBot = require('bootbot');
 var Config = require('./config')
+var port = process.env.PORT || 5000;
 
 const bot = new BootBot({
   accessToken: Config.FB_PAGE_TOKEN,
