@@ -7,9 +7,9 @@ var port = process.env.PORT || 5000;
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
 const bot = new BootBot({
-  accessToken: Config.FB_PAGE_TOKEN,
-  verifyToken: Config.FB_VERIFY_TOKEN,
-  appSecret: Config.FB_APP_SECRET
+    accessToken: Config.FB_PAGE_TOKEN,
+    verifyToken: Config.FB_VERIFY_TOKEN,
+    appSecret: Config.FB_APP_SECRET
 });
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
@@ -21,8 +21,8 @@ bot.on('attachment', (payload, chat) => {
 
 bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-    chat.say(`Hello, ${user.first_name} !`,{typing:true});
-  });
+        chat.say(`Hello, ${user.first_name} !`, { typing: true });
+    });
 });
 
 bot.hear(['food', 'hungry'], (payload, chat) => {
@@ -54,19 +54,20 @@ bot.hear('bandeshor', (payload, chat) => {
     chat.say(`xD`);
 });
 
-bot.hear(/gif (.*)/i, (payload,chat,data) => {
+bot.hear(/gif (.*)/i, (payload, chat, data) => {
     const query = data.match[1];
+    console.log(query);
     chat.say('Searching a good gif ..');
-    fetch(GIPHY_URL+query)
-    .then(res=>res.json())
-    .then(json=> {
-        chat.say({
-            attachment: 'image',
-            url:json.data[0].images.fixed_height.url
-        },{
-            typing:true
-        });
-    })
+    fetch(GIPHY_URL + query)
+        .then(res => res.json())
+        .then(json => {
+            chat.say({
+                attachment: 'image',
+                url: json.data[0].images.fixed_height.url
+            }, {
+                    typing: true
+                });
+        })
 });
 
 bot.start(port || 5000);
