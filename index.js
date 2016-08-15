@@ -54,7 +54,7 @@ bot.hear('bandeshor', (payload, chat) => {
     chat.say(`xD`);
 });
 
-bot.hear('/gif (.*)/i', (payload,chat,data) => {
+bot.hear(/gif (.*)/i, (payload,chat,data) => {
     const query = data.match[1];
     chat.say('Searching a good gif ..');
     fetch(GIPHY_URL+query)
