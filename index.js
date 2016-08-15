@@ -18,9 +18,8 @@ bot.on('attachment', (payload, chat) => {
 });
 
 bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
-    // Send a text message followed by another text message that contains a typing indicator
     chat.getUserProfile().then((user) => {
-    chat.say(`Hello, ${user.first_name} !`,true);
+    chat.say(`Hello, ${user.first_name} !`,{typing:true});
   });
 });
 
