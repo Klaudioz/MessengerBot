@@ -10,6 +10,8 @@ const bot = new BootBot({
   appSecret: Config.FB_APP_SECRET
 });
 
+bot.setGreetingText('Hey there! Welcome to my bot!');
+
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
     chat.say('I am sorry. I cant receive any attachment yet');
