@@ -1,0 +1,14 @@
+{
+  "name": "babyprogress",
+  "version": "0.1.0",
+  "description": "First FB Messenger bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "klaudioz",
+  "license": "ISC",
+  "dependencies": {
+    "bootbot": "1.0.6"
+  }
+}
