@@ -14,4 +14,4 @@ bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
     console.log('The user said "hello", "hi", "hey", or "hey there"');
 });
 
-bot.start(5000);
+bot.start(port || 5000);
