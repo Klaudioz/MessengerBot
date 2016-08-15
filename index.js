@@ -56,7 +56,6 @@ bot.hear('bandeshor', (payload, chat) => {
 
 bot.hear(/gif (.*)/i, (payload, chat, data) => {
     const query = data.match[1];
-    console.log(query);
     chat.say('Searching a good gif ..');
     fetch(GIPHY_URL + query)
         .then(res => res.json())
@@ -64,8 +63,6 @@ bot.hear(/gif (.*)/i, (payload, chat, data) => {
             chat.say({
                 attachment: 'image',
                 url: json.data[0].images.fixed_height.url
-            }, {
-                    typing: true
                 });
         })
 });
