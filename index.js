@@ -10,6 +10,11 @@ const bot = new BootBot({
   appSecret: Config.FB_APP_SECRET
 });
 
+bot.on('attachment', (payload, chat) => {
+    // Reply to the user
+    chat.say('I am sorry. I cant receive any attachment yet');
+});
+
 bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
     // Send a text message followed by another text message that contains a typing indicator
     chat.getUserProfile().then((user) => {
@@ -43,6 +48,7 @@ bot.hear('bandeshor', (payload, chat) => {
         attachment: 'image',
         url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif'
     });
+    chat.say(`xD`);
 });
 
 bot.start(port || 5000);
