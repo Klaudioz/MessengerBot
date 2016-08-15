@@ -1,8 +1,10 @@
 'use strict';
 
 const BootBot = require('bootbot');
+const fetch = require('node-fetch');
 var Config = require('./config')
 var port = process.env.PORT || 5000;
+const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
 const bot = new BootBot({
   accessToken: Config.FB_PAGE_TOKEN,
@@ -50,6 +52,21 @@ bot.hear('bandeshor', (payload, chat) => {
         url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif'
     });
     chat.say(`xD`);
+});
+
+bot.hear('/gif (.*)/i', (payload,chat,data) => {
+    const query = data.match[1];
+    chat.say('Searching a good gif ..');
+    fetch(GIPHY_URL+query)
+    .then(res=>res.json())
+    .then(json=> {
+        chat.say({
+            attachment: 'image',
+            url:json.data[0].images.fixed_height.url
+        },{
+            typing:true
+        });
+    })
 });
 
 bot.start(port || 5000);
