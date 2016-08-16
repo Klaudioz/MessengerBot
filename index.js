@@ -18,11 +18,10 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
   chat.getUserProfile().then((user) => {
-        chat.say(`Hello, ${user.first_name} !`, { typing: true });
         if(user.gender==='male'){
-            chat.say('Hello, ${user.first_name} !. Futuro padre', { typing: true });
+            chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
             sleep.sleep(3);
-            chat.say('3 seconds wait test');
+            chat.say(`3 seconds wait test`);
         }
         else{
             chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
