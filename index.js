@@ -13,7 +13,7 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-bot.hear(' ', (payload, chat) => {
+bot.on('message', (payload, chat) => {
     new CronJob('0 * * * * *', function () {
         console.log('Cron message every minute');
         chat.say('Cron message every minute', { typing: true });
