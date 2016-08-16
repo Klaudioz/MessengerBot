@@ -13,7 +13,7 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-bot.hear('', (payload, chat) => {
+bot.hear(' ', (payload, chat) => {
     new CronJob('0 * * * * *', function () {
         console.log('Cron message every minute');
         chat.say('Cron message every minute', { typing: true });
@@ -27,11 +27,11 @@ bot.on('attachment', (payload, chat) => {
     chat.say('I am sorry. I cant receive any attachment yet');
 });
 
-bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
+bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !`, { typing: true });
-        chat.say(`You are a ${user.gender} !`, { typing: true });
-        chat.say(`and your timezone is: ${user.timezone} !`, { typing: true });
+        chat.say(`You are a ${user.gender}`, { typing: true });
+        chat.say(`and your timezone is: ${user.timezone}`, { typing: true });
     });
 });
 
