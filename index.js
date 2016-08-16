@@ -14,7 +14,7 @@ const bot = new BootBot({
 });
 
 new CronJob('0 * * * * *', function() {
-  console.log('You will see this message every second');
+  chat.say('Cron message every minute');
 }, null, true, 'America/Los_Angeles');
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
