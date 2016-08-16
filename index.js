@@ -3,6 +3,7 @@
 const BootBot = require('bootbot');
 const fetch = require('node-fetch');
 var Config = require('./config')
+var CronJob = require('cron').CronJob;
 var port = process.env.PORT || 5000;
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
@@ -11,6 +12,10 @@ const bot = new BootBot({
     verifyToken: Config.FB_VERIFY_TOKEN,
     appSecret: Config.FB_APP_SECRET
 });
+
+new CronJob('0 * * * * *', function() {
+  console.log('You will see this message every second');
+}, null, true, 'America/Los_Angeles');
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
 
@@ -46,7 +51,6 @@ bot.hear(['help'], (payload, chat) => {
 });
 
 bot.hear('bandeshor', (payload, chat) => {
-    // Send an attachment
     chat.say({
         attachment: 'image',
         url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif'
@@ -67,4 +71,4 @@ bot.hear(/gif (.*)/i, (payload, chat, data) => {
         })
 });
 
-bot.start(port || 5000);
+bot.start(port || 5000); //fix heroku problem 60 seconds
