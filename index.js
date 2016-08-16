@@ -16,7 +16,7 @@ const bot = new BootBot({
 bot.hear('', (payload, chat) => {
     new CronJob('0 * * * * *', function () {
         console.log('Cron message every minute');
-        chat.say('Cron message every minute');
+        chat.say('Cron message every minute', { typing: true });
     }, null, true, 'America/Los_Angeles');
 });
 
@@ -30,6 +30,8 @@ bot.on('attachment', (payload, chat) => {
 bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !`, { typing: true });
+        chat.say(`You are a ${user.gender} !`, { typing: true });
+        chat.say(`and your timezone is: ${user.timezone} !`, { typing: true });
     });
 });
 
@@ -37,7 +39,8 @@ bot.hear(['food', 'hungry'], (payload, chat) => {
     // Send a text message with quick replies
     chat.say({
         text: 'What do you want to eat today?',
-        quickReplies: ['Mexican', 'Italian', 'American', 'Argentine']
+        quickReplies: ['Mexican', 'Italian', 'American', 'Argentine'],
+        typing: true
     });
 });
 
@@ -56,7 +59,8 @@ bot.hear(['help'], (payload, chat) => {
 bot.hear('bandeshor', (payload, chat) => {
     chat.say({
         attachment: 'image',
-        url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif'
+        url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif',
+        typing:true
     });
     chat.say(`xD`);
 });
