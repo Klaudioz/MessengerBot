@@ -1,7 +1,6 @@
 'use strict';
 
 var express = require('express');
-var sleep = require('sleep');
 const BootBot = require('bootbot');
 const fetch = require('node-fetch');
 var Config = require('./config')
@@ -20,8 +19,6 @@ bot.setGetStartedButton((payload, chat) => {
   chat.getUserProfile().then((user) => {
         if(user.gender==='male'){
             chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
-            sleep.sleep(3);
-            chat.say(`3 seconds wait test`);
         }
         else{
             chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
@@ -38,6 +35,10 @@ bot.setGetStartedButton((payload, chat) => {
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
     chat.say('I am sorry. I cant receive any attachment yet');
+});
+
+bot.hear(['test'], (payload, chat) => {
+        chat.say(`1234567890\n1234567890\n`);
 });
 
 bot.hear(['hi'], (payload, chat) => {
