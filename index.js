@@ -13,9 +13,10 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-new CronJob('0 * * * * *', function() {
-  chat.say('Cron message every minute');
-}, null, true, 'America/Los_Angeles');
+// new CronJob('0 * * * * *', function() {
+//   console.log('Cron message every minute');
+//   chat.say('Cron message every minute');
+// }, null, true, 'America/Los_Angeles');
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
 
