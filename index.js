@@ -13,10 +13,12 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-// new CronJob('0 * * * * *', function() {
-//   console.log('Cron message every minute');
-//   chat.say('Cron message every minute');
-// }, null, true, 'America/Los_Angeles');
+bot.hear('', (payload, chat) => {
+    new CronJob('0 * * * * *', function () {
+        console.log('Cron message every minute');
+        //chat.say('Cron message every minute');
+    }, null, true, 'America/Los_Angeles');
+});
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
 
@@ -68,7 +70,7 @@ bot.hear(/gif (.*)/i, (payload, chat, data) => {
             chat.say({
                 attachment: 'image',
                 url: json.data[0].images.fixed_height.url
-                });
+            });
         })
 });
 
