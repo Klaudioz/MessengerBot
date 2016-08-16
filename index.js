@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 var Config = require('./config')
 var CronJob = require('cron').CronJob;
 var port = process.env.PORT || 5000;
+var app = express();
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
 const bot = new BootBot({
@@ -13,11 +14,16 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-bot.on('message', (payload, chat) => {
-    new CronJob('0 * * * * *', function () {
-        chat.say('Cron message every minute', { typing: true });
-    }, null, true, 'America/Los_Angeles');
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+  console.log('served a request 0.0.2');
 });
+
+// bot.on('message', (payload, chat) => {
+//     new CronJob('0 * * * * *', function () {
+//         chat.say('Cron message every minute', { typing: true });
+//     }, null, true, 'America/Los_Angeles');
+// });
 
 bot.setGreetingText(`Hello. Thanks for use our service`);
 
