@@ -15,6 +15,11 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
+bot.setGreetingText('Hey there! Welcome to BootBot!');
+bot.setGetStartedButton((payload, chat) => {
+  chat.say('Welcome to BootBot. What are you looking for?');
+});
+
 app.get('/', function (req, res) {
   res.send('Hello World!');
   console.log('served a request 0.0.2');
@@ -26,11 +31,15 @@ app.get('/', function (req, res) {
 //     }, null, true, 'America/Los_Angeles');
 // });
 
-bot.setGreetingText(`Hello. Thanks for use our service`);
-
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
     chat.say('I am sorry. I cant receive any attachment yet');
+});
+
+bot.hear(['hi'], (payload, chat) => {
+    chat.getUserProfile().then((user) => {
+        chat.say(`Hello, ${user.first_name} !`, { typing: true });
+    });
 });
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
