@@ -15,9 +15,14 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-bot.setGreetingText('Hey there! Welcome to BootBot!');
 bot.setGetStartedButton((payload, chat) => {
-  chat.say('Welcome to BootBot. What are you looking for?');
+  chat.getUserProfile().then((user) => {
+        chat.say(`Hello, ${user.first_name} !`, { typing: true });
+        if($user.gender==='male')
+            chat.say('Futuro padre');
+        else
+            chat.say('Futura madre');
+    });
 });
 
 app.get('/', function (req, res) {
