@@ -16,7 +16,7 @@ const bot = new BootBot({
 bot.hear('', (payload, chat) => {
     new CronJob('0 * * * * *', function () {
         console.log('Cron message every minute');
-        //chat.say('Cron message every minute');
+        chat.say('Cron message every minute');
     }, null, true, 'America/Los_Angeles');
 });
 
