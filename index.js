@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var sleep = require('sleep');
 const BootBot = require('bootbot');
 const fetch = require('node-fetch');
 var Config = require('./config')
@@ -18,16 +19,15 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
   chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !`, { typing: true });
-        if(user.gender==='male')
-            chat.say('Futuro padre');
-        else
-            chat.say('Futura madre');
+        if(user.gender==='male'){
+            chat.say('Hello, ${user.first_name} !. Futuro padre', { typing: true });
+            sleep.sleep(3);
+            chat.say('3 seconds wait test');
+        }
+        else{
+            chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
+        }
     });
-});
-
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-  console.log('served a request 0.0.2');
 });
 
 // bot.on('message', (payload, chat) => {
