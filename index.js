@@ -6,6 +6,7 @@ var moment = require('moment');
 const BootBot = require('bootbot');
 const fetch = require('node-fetch');
 var Config = require('./config')
+var Strings = require('./strings')
 var CronJob = require('cron').CronJob;
 var port = process.env.PORT || 5000;
 var app = express();
@@ -20,13 +21,6 @@ var filter_language = function(language, obj) {
   return result;
 };
 
-var WORDS = {
-  "greetings": {
-    "en": "Helloo",
-    "es": "Hi"
-  }
-};
-
 const bot = new BootBot({
     accessToken: Config.FB_PAGE_TOKEN,
     verifyToken: Config.FB_VERIFY_TOKEN,
@@ -36,9 +30,9 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         if(user.locale.start === 'ES_')
-            chat.say(`${filter_language('es', WORDS.greetings)}, ${user.first_name} !`, { typing: true });
+            chat.say(`${filter_language('es', Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
         else
-            chat.say(`${filter_language('en', WORDS.greetings)}, ${user.first_name} !`, { typing: true });
+            chat.say(`${filter_language('en', Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
         // if (user.gender === 'male') {
         //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
         // }
