@@ -31,7 +31,7 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        var language = user.locale.substring(0,1).toLowerCase();
+        var language = user.locale.substring(0,2).toLowerCase();
         console.log(`Language: ${language}`);    
         chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
         // if (user.gender === 'male') {
