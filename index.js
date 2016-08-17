@@ -35,7 +35,7 @@ bot.setGetStartedButton((payload, chat) => {
         console.log(`Language: ${language}`);
         //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', 'Italian', 'American', 'Argentine'] });
         chat.say({
-            text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
+            text: "`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`",
             typing: true
         });
     });
