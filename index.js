@@ -22,7 +22,7 @@ var filter_language = function(language, obj) {
 
 var WORDS = {
   "greetings": {
-    "en": "Hello",
+    "en": "Helloo",
     "es": "Hi"
   }
 };
