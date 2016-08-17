@@ -1,5 +1,6 @@
 'use strict';
 
+var traverse = require('traverse');
 var express = require('express');
 var moment = require('moment');
 const BootBot = require('bootbot');
@@ -10,6 +11,22 @@ var port = process.env.PORT || 5000;
 var app = express();
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
+var filter_language = function(language, obj) {
+  var result = traverse(obj).map(function(item) {
+    if (this.key === language) {
+      this.parent.update(item);
+    }
+  });
+  return result;
+};
+
+var WORDS = {
+  "greetings": {
+    "en": "Hello",
+    "es": "Hi"
+  }
+};
+
 const bot = new BootBot({
     accessToken: Config.FB_PAGE_TOKEN,
     verifyToken: Config.FB_VERIFY_TOKEN,
@@ -19,9 +36,9 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         if(user.locale.start === 'ES_')
-            chat.say(`Hola, ${user.first_name} !`, { typing: true });
+            chat.say(`${filter_language('es', WORDS.greetings)}, ${user.first_name} !`, { typing: true });
         else
-            chat.say(`Hello, ${user.first_name} !`, { typing: true });
+            chat.say(`${filter_language('en', WORDS.greetings)}, ${user.first_name} !`, { typing: true });
         // if (user.gender === 'male') {
         //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
         // }
