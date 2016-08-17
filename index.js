@@ -19,7 +19,7 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
   chat.getUserProfile().then((user) => {
         if(user.gender==='male'){
-            chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
+            chat.say(`Hellooo, ${user.first_name} !. Futuro padre`, { typing: true });
         }
         else{
             chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
