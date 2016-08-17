@@ -18,13 +18,16 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
-        if (user.gender === 'male') {
-            chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
-        }
-        else {
-            chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
-        }
+        if(user.locale.start === 'ES_')
+            chat.say(`Hola, ${user.first_name} !`, { typing: true });
+        else
+            chat.say(`Hello, ${user.first_name} !`, { typing: true });
+        // if (user.gender === 'male') {
+        //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
+        // }
+        // else {
+        //     chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
+        // }
     });
 });
 
