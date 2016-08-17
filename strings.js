@@ -8,5 +8,5 @@ var words = {
 };
 
 module.exports = {
-    WORDS:WORDS
+    words:words
 }
