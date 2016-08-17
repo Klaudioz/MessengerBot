@@ -38,7 +38,7 @@ bot.setGetStartedButton((payload, chat) => {
         console.log(`Button0: ${testButton0}`);
         console.log(`Button1: ${testButton1}`);
         //console.log(`Buttons: ${testButton[0]} ${testButton[1]}`);
-        //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
+        chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${testButton0}`,`${testButton1}`]
