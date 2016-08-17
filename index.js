@@ -14,13 +14,13 @@ var port = process.env.PORT || 5000;
 var app = express();
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
-var sayy = function(language, obj) {
-  var result = traverse(obj).map(function(item) {
-    if (this.key === language) {
-      this.parent.update(item);
-    }
-  });
-  return result;
+var sayy = function (language, obj) {
+    var result = traverse(obj).map(function (item) {
+        if (this.key === language) {
+            this.parent.update(item);
+        }
+    });
+    return result;
 };
 
 const bot = new BootBot({
@@ -31,15 +31,13 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        var language = user.locale.substring(0,2).toLowerCase();
-        console.log(`Language: ${language}`);    
-        chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
-        // if (user.gender === 'male') {
-        //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
-        // }
-        // else {
-        //     chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
-        // }
+        var language = user.locale.substring(0, 2).toLowerCase();
+        console.log(`Language: ${language}`);
+        chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }); //The chat is multilanguage now, and adding more languages is modular and without code change
+        chat.say({
+            text: `${sayy(`${language}`, Strings.words.greetings)}`,
+            quickReplies: ['Mexican', 'Italian', 'American', 'Argentine']
+        });
     });
 });
 
