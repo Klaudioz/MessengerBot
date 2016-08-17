@@ -78,10 +78,9 @@ bot.hear(['help'], (payload, chat) => {
 bot.hear('baby', (payload, chat) => {
     chat.say({
         attachment: 'image',
-        url: './res/images/pregnancy-week-7.jpg',
+        url: 'res/images/pregnancy-week-7.jpg',
         typing:true
     });
-    chat.say(`xD`);
 });
 
 bot.hear(/gif (.*)/i, (payload, chat, data) => {
