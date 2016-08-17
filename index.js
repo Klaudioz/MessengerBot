@@ -29,14 +29,6 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
-const askName = (convo) => {
-    convo.ask(`Hello! What's your name?`, (payload, convo, data) => {
-        const text = payload.message.text;
-        convo.set('name', text);
-        convo.say(`Oh, your name is ${text}`).then(() => askFavoriteFood(convo));
-    });
-};
-
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         var language = user.locale.substring(0, 2).toLowerCase();
@@ -49,12 +41,10 @@ bot.setGetStartedButton((payload, chat) => {
         //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
-            quickReplies: ['Mexican', `${questionBtn0}`, 'Argentine'] //I had to use temp vars coz it isn't working if I put all the stuff directly.
+            quickReplies: ['Mexican', `${questionBtn0}`, `${questionBtn1}`] //I had to use temp vars coz it isn't working if I put all the stuff directly.
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
-            chat.conversation((convo) => {
-                convo.sendTypingIndicator(1000).then(() => askName(convo));
-            });
+            
         });
     });
 });
@@ -79,15 +69,6 @@ bot.hear(['hi'], (payload, chat) => {
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !.You are a ${user.gender}, locale: ${user.locale} and your timezone is: ${user.timezone}`, { typing: true });
-    });
-});
-
-bot.hear(['food', 'hungry'], (payload, chat) => {
-    // Send a text message with quick replies
-    chat.say({
-        text: 'What do you want to eat today?',
-        quickReplies: ['Mexican', 'Italian', 'American', 'Argentine'],
-        typing: true
     });
 });
 
