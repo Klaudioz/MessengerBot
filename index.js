@@ -33,12 +33,12 @@ bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         var language = user.locale.substring(0, 2).toLowerCase();
         // console.log(`Language: ${language}`);
-        // var testButton = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
-        // console.log(`Language: ${testButton}`);
+        var testButton = `${sayy(`${language}`, Strings.words.first_question_btn)}`;
+        console.log(`Buttons: ${testButton[0]} ${testButton[1]}`);
         //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
-            quickReplies: [`${sayy(`${language}`, Strings.words.first_question_btn)[0]}`, `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`]
+            //quickReplies: [`${sayy(`${language}`, Strings.words.first_question_btn)[0]}`, `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`]
         });
     });
 });
