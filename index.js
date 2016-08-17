@@ -75,10 +75,10 @@ bot.hear(['help'], (payload, chat) => {
     });
 });
 
-bot.hear('bandeshor', (payload, chat) => {
+bot.hear('baby', (payload, chat) => {
     chat.say({
         attachment: 'image',
-        url: 'http://2.bp.blogspot.com/-f3gTW-FCwhs/UHvNKJJzEnI/AAAAAAAADsk/MIZL9pUz9eo/s1600/doraemon+comiendo+dorayakis.gif',
+        url: './res/images/pregnancy-week-7.jpg',
         typing:true
     });
     chat.say(`xD`);
