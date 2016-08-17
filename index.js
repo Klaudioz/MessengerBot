@@ -17,11 +17,12 @@ const bot = new BootBot({
 });
 
 bot.setGetStartedButton((payload, chat) => {
-  chat.getUserProfile().then((user) => {
-        if(user.gender==='male'){
+    chat.getUserProfile().then((user) => {
+        chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
+        if (user.gender === 'male') {
             chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
         }
-        else{
+        else {
             chat.say('Hello, ${user.first_name} ! Futura madre', { typing: true });
         }
     });
@@ -38,10 +39,6 @@ bot.on('attachment', (payload, chat) => {
     chat.say('I am sorry. I cant receive any attachment yet');
 });
 
-bot.hear(['test'], (payload, chat) => {
-        chat.say(`1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n1234567890\n`);
-});
-
 bot.hear(['hi'], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !`, { typing: true });
@@ -50,7 +47,7 @@ bot.hear(['hi'], (payload, chat) => {
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        chat.say(`Hello, ${user.first_name} !.You are a ${user.gender} and your timezone is: ${user.timezone}`, { typing: true });
+        chat.say(`Hello, ${user.first_name} !.You are a ${user.gender}, locale: ${user.locale} and your timezone is: ${user.timezone}`, { typing: true });
     });
 });
 
@@ -79,7 +76,7 @@ bot.hear('baby', (payload, chat) => {
     chat.say({
         attachment: 'image',
         url: 'res/images/pregnancy-week-7.jpg',
-        typing:true
+        typing: true
     });
 });
 
