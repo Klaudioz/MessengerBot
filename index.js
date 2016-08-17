@@ -31,10 +31,9 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        if(user.locale.start === 'ES_')
-            chat.say(`${sayy('es', Strings.words.greetings)}, ${user.first_name} \ntest_es`, { typing: true });
-        else
-            chat.say(`${sayy('en', Strings.words.greetings)}, ${user.first_name} \ntest_en`, { typing: true });
+        var language = user.locale.substring(0,1).toLowerCase();
+        console.log(`Language: ${language}`);    
+        chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
         // if (user.gender === 'male') {
         //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
         // }

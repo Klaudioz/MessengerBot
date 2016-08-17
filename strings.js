@@ -4,6 +4,10 @@ var words = {
   "greetings": {
     "en": "Hello",
     "es": "Hola"
+  },
+  "months": {
+    "en": "Hello",
+    "es": "Hola"
   }
 };
 
