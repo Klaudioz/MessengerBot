@@ -41,7 +41,7 @@ bot.setGetStartedButton((payload, chat) => {
         //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
-            quickReplies: [`${testButton0}`, `${testButton1}`] //I had to use temp var coz it isn't working if I put all the stuff directly.'
+            quickReplies: ['Mexican', 'Italian', 'American', 'Argentine'] //I had to use temp var coz it isn't working if I put all the stuff directly.'
         });
     });
 });
