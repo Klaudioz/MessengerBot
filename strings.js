@@ -14,7 +14,7 @@ var words = {
     "es": "Por favor dime la fecha estimada del nacimiento de tu bebe o la de la ultima menstruación."
   },
   "first_question_btn": {
-    "en": ["Due date", "Day last menstrual period"],
+    "en": ["Due date", "Last menstrual period"],
     "es": ['Fecha nacimiento', 'Última menstruación']
   },
   "months": {
