@@ -3,16 +3,18 @@
 var traverse = require('traverse');
 var express = require('express');
 var moment = require('moment');
-const BootBot = require('bootbot');
-const fetch = require('node-fetch');
+var BootBot = require('bootbot');
+var fetch = require('node-fetch');
+var CronJob = require('cron').CronJob;
+
 var Config = require('./config');
 var Strings = require('./strings');
-var CronJob = require('cron').CronJob;
+
 var port = process.env.PORT || 5000;
 var app = express();
 const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
 
-var filter_language = function(language, obj) {
+var sayy = function(language, obj) {
   var result = traverse(obj).map(function(item) {
     if (this.key === language) {
       this.parent.update(item);
@@ -30,9 +32,9 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         if(user.locale.start === 'ES_')
-            chat.say(`${filter_language('es', Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
+            chat.say(`${sayy('es', Strings.words.greetings)}, ${user.first_name} \n test_es`, { typing: true });
         else
-            chat.say(`${filter_language('en', Strings.words.greetings)}, ${user.first_name} !`, { typing: true });
+            chat.say(`${sayy('en', Strings.words.greetings)}, ${user.first_name} \n test_en`, { typing: true });
         // if (user.gender === 'male') {
         //     chat.say(`Hello, ${user.first_name} !. Futuro padre`, { typing: true });
         // }
