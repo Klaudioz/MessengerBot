@@ -2,8 +2,8 @@
 
 var words = {
   "greetings": {
-    "en": "Helloo",
-    "es": "Hi"
+    "en": "Hello",
+    "es": "Hola"
   }
 };
 
