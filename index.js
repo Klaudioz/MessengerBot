@@ -29,6 +29,14 @@ const bot = new BootBot({
     appSecret: Config.FB_APP_SECRET
 });
 
+const askName = (convo) => {
+    convo.ask(`Hello! What's your name?`, (payload, convo, data) => {
+        const text = payload.message.text;
+        convo.set('name', text);
+        convo.say(`Oh, your name is ${text}`).then(() => askFavoriteFood(convo));
+    });
+};
+
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         var language = user.locale.substring(0, 2).toLowerCase();
@@ -45,24 +53,8 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
-                askName(convo);
+                convo.sendTypingIndicator(1000).then(() => askName(convo));
             });
-
-            const askName = (convo) => {
-                convo.ask(`What's your name?`, (payload, convo) => {
-                    const text = payload.message.text;
-                    convo.set('name', text);
-                    convo.say(`Oh, your name is ${text}`).then(() => askFavoriteFood(convo));
-                });
-            };
-
-            const askFavoriteFood = (convo) => {
-                convo.ask(`What's your favorite food?`, (payload, convo) => {
-                    const text = payload.message.text;
-                    convo.set('food', text);
-                    convo.say(`Got it, your favorite food is ${text}`).then(() => sendSummary(convo));
-                });
-            };
         });
     });
 });

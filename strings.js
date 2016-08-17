@@ -17,6 +17,14 @@ var words = {
     "en": ["Due date", "Last menstrual period"],
     "es": ['Fecha nacimiento', 'Última menstruación']
   },
+  "asking_due_day": {
+    "en": "Please, tell me the due date day.",
+    "es": "Por favor ingresa el dia de la fecha estimada del nacimiento."
+  },
+  "asking_due_month": {
+    "en": "Now, tell me the due date month.",
+    "es": "Ahora ingresa el mes de la fecha estimada del nacimiento"
+  },
   "months": {
     "en": ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
     "es": ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre','diciembre']
