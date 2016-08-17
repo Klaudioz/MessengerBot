@@ -50,9 +50,7 @@ bot.hear(['hi'], (payload, chat) => {
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        chat.say(`Hello, ${user.first_name} !`, { typing: true });
-        chat.say(`You are a ${user.gender}`, { typing: true });
-        chat.say(`and your timezone is: ${user.timezone}`, { typing: true });
+        chat.say(`Hello, ${user.first_name} !.You are a ${user.gender} and your timezone is: ${user.timezone}`, { typing: true });
     });
 });
 
