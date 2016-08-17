@@ -44,7 +44,25 @@ bot.setGetStartedButton((payload, chat) => {
             quickReplies: ['Mexican', `${questionBtn0}`, 'Argentine'] //I had to use temp vars coz it isn't working if I put all the stuff directly.
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
-                chat.say('button2', { typing: true });
+            chat.conversation((convo) => {
+                askName(convo);
+            });
+
+            const askName = (convo) => {
+                convo.ask(`What's your name?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    convo.set('name', text);
+                    convo.say(`Oh, your name is ${text}`).then(() => askFavoriteFood(convo));
+                });
+            };
+
+            const askFavoriteFood = (convo) => {
+                convo.ask(`What's your favorite food?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    convo.set('food', text);
+                    convo.say(`Got it, your favorite food is ${text}`).then(() => sendSummary(convo));
+                });
+            };
         });
     });
 });
