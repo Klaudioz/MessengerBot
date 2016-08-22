@@ -52,7 +52,7 @@ bot.setGetStartedButton((payload, chat) => {
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);                    
-                    diff = Math.floor(diff);
+                    diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
                 });
             });
@@ -64,9 +64,8 @@ bot.setGetStartedButton((payload, chat) => {
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks();
                     console.log(diff);                    
-                    diff = Math.floor(diff);
+                    diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
-                    console.log(diff);
                 });
             });
         });
