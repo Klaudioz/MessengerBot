@@ -49,7 +49,7 @@ bot.setGetStartedButton((payload, chat) => {
             //     text: `${sayy(`${language}`, Strings.words.asking_due_day)}`
             // });
             chat.conversation((convo) => {
-                convo.ask(`What's your name?`, (payload, convo) => {
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     convo.set('name', text);
                     convo.say(`Oh, your name is ${text}`);
