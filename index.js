@@ -52,7 +52,7 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     convo.set('dueDate', text);
-                    convo.say(`Date is ${chrono.parse(text)}`);
+                    convo.say(`Date is ${chrono.parseDate(text)}`);
                 });
             });
         });
