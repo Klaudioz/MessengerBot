@@ -50,9 +50,10 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                    var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
+                    console.log(diff);                    
+                    diff = Math.floor(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
-                    console.log(diff);
                 });
             });
         });
@@ -61,7 +62,9 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Math.floor(Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks());
+                    var diff = Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks();
+                    console.log(diff);                    
+                    diff = Math.floor(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
                     console.log(diff);
                 });
