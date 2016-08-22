@@ -65,16 +65,15 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff);
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => chat.say({
+                        attachment: 'image',
+                        url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
+                        typing: true
+                    }));
                 });
             });
         });
-        chat.say({
-            //text: `${sayy(`${language}`, Strings.words.weeks[diff])}`,
-            attachment: 'image',
-            url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
-            typing: true
-        });
+
     });
 });
 
