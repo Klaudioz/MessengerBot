@@ -46,15 +46,21 @@ bot.setGetStartedButton((payload, chat) => {
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`] //I had to use temp vars coz it isn't working if I put all the stuff directly.
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
-            // chat.say({
-            //     text: `${sayy(`${language}`, Strings.words.asking_due_day)}`
-            // });
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
-                    //convo.set('dueDate', text);
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
+                });
+            });
+        });
+        bot.hear([`${questionBtn1}`], (payload, chat) => {
+            chat.conversation((convo) => {
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
+                    const text = payload.message.text;
+                    var dueDateFormatted = chrono.parseDate(text);
+                    var diff = Math.floor(40 - Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks());
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
                 });
             });

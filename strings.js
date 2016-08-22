@@ -21,6 +21,10 @@ var words = {
     "en": "Please, tell me the due date day.",
     "es": "Por favor ingresa la fecha estimada del nacimiento."
   },
+    "asking_menstrual_day": {
+    "en": "Please, tell me the first day of last menstrual period.",
+    "es": "Por favor ingresa la fecha de tu ultima menstruación."
+  },
   "your_week": {
     "en": "You're in week: ",
     "es": "Vas en la semana: "
