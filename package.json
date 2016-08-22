@@ -15,6 +15,7 @@
     "cron": "1.1.0",
     "moment": "2.14.1",
     "traverse":"0.6.6",
-    "chrono-node":"1.2.4"
+    "chrono-node":"1.2.4",
+    "date-diff":"0.1.3"
   }
 }

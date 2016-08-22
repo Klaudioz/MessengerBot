@@ -5,7 +5,8 @@ var express = require('express');
 var moment = require('moment');
 var BootBot = require('bootbot');
 var fetch = require('node-fetch');
-var chrono = require('chrono-node')
+var chrono = require('chrono-node');
+var DateDiff = require('date-diff');
 var CronJob = require('cron').CronJob;
 
 var Config = require('./config');
@@ -50,9 +51,11 @@ bot.setGetStartedButton((payload, chat) => {
             // });
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
+
                     const text = payload.message.text;
                     convo.set('dueDate', text);
-                    convo.say(`Date is ${chrono.parseDate(text)}`);
+                    var diff = Date.diff(chrono.parseDate(text), chrono.parseDate('Today')).weeks();
+                    convo.say(`Date is ${chrono.parseDate(text)} AND ${diff}`);
                 });
             });
         });
