@@ -51,8 +51,8 @@ bot.setGetStartedButton((payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
-                    convo.set('name', text);
-                    convo.say(`Oh, your name is ${text}`);
+                    convo.set('dueDate', text);
+                    convo.say(`Date is ${chrono.parse(text)}`);
                 });
             });
         });
