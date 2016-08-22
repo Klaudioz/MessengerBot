@@ -70,7 +70,7 @@ bot.setGetStartedButton((payload, chat) => {
             });
         });
         chat.say({
-            text: `${sayy(`${language}`, Strings.words.weeks[diff])}`,
+            //text: `${sayy(`${language}`, Strings.words.weeks[diff])}`,
             attachment: 'image',
             url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
             typing: true
