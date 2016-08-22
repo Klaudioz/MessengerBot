@@ -49,7 +49,6 @@ bot.setGetStartedButton((payload, chat) => {
                 text: `${sayy(`${language}`,Strings.words.asking_due_day)}`
         });
     });
-});
 
 // bot.on('message', (payload, chat) => {
 //     new CronJob('0 * * * * *', function () {
