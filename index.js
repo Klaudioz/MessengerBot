@@ -60,7 +60,7 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Math.floor(40 - Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks());
+                    var diff = Math.floor(Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks());
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
                 });
             });
