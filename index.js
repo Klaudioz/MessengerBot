@@ -5,7 +5,7 @@ var express = require('express');
 var moment = require('moment');
 var BootBot = require('bootbot');
 var fetch = require('node-fetch');
-var itsadate = require('its-a-date');
+var chrono = require('chrono-node')
 var CronJob = require('cron').CronJob;
 
 var Config = require('./config');
@@ -46,7 +46,8 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.say({
-                text: `${sayy(`${language}`, Strings.words.asking_due_day)}`
+                text: 'What do you want to eat today?',
+                quickReplies: ['Mexican', 'Italian', 'American', 'Argentine']
             });
         });
     });
