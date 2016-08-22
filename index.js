@@ -45,10 +45,19 @@ bot.setGetStartedButton((payload, chat) => {
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`] //I had to use temp vars coz it isn't working if I put all the stuff directly.
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
-            chat.say({
-                text: 'What do you want to eat today?',
-                quickReplies: ['Mexican', 'Italian', 'American', 'Argentine']
+            // chat.say({
+            //     text: `${sayy(`${language}`, Strings.words.asking_due_day)}`
+            // });
+            chat.conversation((convo) => {
+                askName(convo);
             });
+            const askName = (convo) => {
+                convo.ask(`What's your name?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    convo.set('name', text);
+                    convo.say(`Oh, your name is ${text}`);
+                });
+            };
         });
     });
 });
