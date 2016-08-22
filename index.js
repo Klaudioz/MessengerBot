@@ -55,7 +55,7 @@ bot.setGetStartedButton((payload, chat) => {
                     convo.set('dueDate', text);
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
-                    convo.say(`You're in week: ${diff}`);
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`);
                 });
             });
         });

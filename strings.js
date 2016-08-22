@@ -21,6 +21,10 @@ var words = {
     "en": "Please, tell me the due date day.",
     "es": "Por favor ingresa la fecha estimada del nacimiento."
   },
+  "your_week": {
+    "en": "You're in week: ",
+    "es": "Vas en la semana: "
+  },
   "months": {
     "en": ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november','december'],
     "es": ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre','diciembre']
