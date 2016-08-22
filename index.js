@@ -46,9 +46,11 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.say({
-                text: `${sayy(`${language}`,Strings.words.asking_due_day)}`
+                text: `${sayy(`${language}`, Strings.words.asking_due_day)}`
+            });
         });
     });
+});
 
 // bot.on('message', (payload, chat) => {
 //     new CronJob('0 * * * * *', function () {
