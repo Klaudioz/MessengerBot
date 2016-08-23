@@ -2,7 +2,7 @@
 
 var traverse = require('traverse');
 //var express = require('express');
-//var moment = require('moment');
+var moment = require('moment');
 var BootBot = require('bootbot');
 var fetch = require('node-fetch');
 var chrono = require('chrono-node');
