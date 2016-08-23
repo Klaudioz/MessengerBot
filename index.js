@@ -63,7 +63,7 @@ bot.setGetStartedButton((payload, chat) => {
                             convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
                                 chat.say({
                                     attachment: 'image',
-                                    url: "http://assets.babycenter.com/ims/2015/01/pregnancy-week-24-lung-development_4x3.jpg", //`${Strings.words.pictures.url[diff]}`
+                                    url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
                                     typing: true
                                 })
                             });
