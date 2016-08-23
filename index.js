@@ -54,7 +54,7 @@ bot.setGetStartedButton((payload, chat) => {
                     console.log(diff);
                     diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks[diff])}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.asking_due_day)}`).then(() => {
                             chat.say({
                                 attachment: 'image',
                                 url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
