@@ -37,13 +37,9 @@ bot.setGetStartedButton((payload, chat) => {
         // console.log(`Language: ${language}`);
         var questionBtn0 = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
         var questionBtn1 = `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`;
-        //console.log(`Button0: ${testButton0}`);
-        //console.log(`Button1: ${testButton1}`);
-        //console.log(`Buttons: ${testButton[0]} ${testButton[1]}`);
-        //chat.say(`${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !. ${sayy(`${language}`, Strings.words.welcome)}`, { typing: true }, { quickReplies: ['Mexican', ':()'] });
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
-            quickReplies: [`${questionBtn0}`, `${questionBtn1}`] //I had to use temp vars coz it isn't working if I put all the stuff directly.
+            quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
@@ -65,17 +61,19 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn1}`], (payload, chat) => {
             chat.conversation((convo) => {
-                convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
+                    var diff = Date.diff(chrono.parseDate('Today')-dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => chat.say({
-                        attachment: 'image',
-                        url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
-                        typing: true
-                    }));
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
+                        chat.say({
+                            attachment: 'image',
+                            url: `${Strings.words.pictures.url[diff]}`,
+                            typing: true
+                        })
+                    });
                 });
             });
         });
@@ -114,14 +112,6 @@ bot.hear(['help'], (payload, chat) => {
             { type: 'postback', title: 'FAQ', payload: 'HELP_FAQ' },
             { type: 'postback', title: 'Talk to a human', payload: 'HELP_HUMAN' }
         ]
-    });
-});
-
-bot.hear('baby', (payload, chat) => {
-    chat.say({
-        attachment: 'image',
-        url: 'res/images/pregnancy-week-7.jpg',
-        typing: true
     });
 });
 
