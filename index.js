@@ -78,9 +78,9 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
+                    var diff = Math.ceil(Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks());
                     console.log(diff);
-                    diff = Math.ceil(diff);
+                    //diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
                         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
                             //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
