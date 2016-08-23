@@ -74,14 +74,17 @@ var words = {
   "weeks": {
     "mom": {
       "en": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
-        "Your growing bump might continue to take you by surprise at this stage of pregnancy, and could seldom leave you feeling a bit unsteady on your feet as your centre of gravity shifts! Take care as you get up and down from your chair – try to avoid standing suddenly and getting that rush of blood to the head feeling.",
+        ["Your growing bump might continue to take you by surprise at this stage of pregnancy, and could seldom leave you feeling a bit unsteady on your feet as your centre of gravity shifts! Take care as you get up and down from your chair – try to avoid standing suddenly and getting that rush of blood to the head feeling.","test second column"],
         "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
       "es": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
         "24",
         "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"]
     },
     "baby": {
-      "en": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
+      "en": ["0",
+        "Your son or daughter – because yes, their sex is already decided this early! – is growing faster now than at any other point in your pregnancy, and their brain, heart and spine are already forming. It's doubtful you are feeling any signs of their presence this early though.",
+        "Your baby's sex has already been decided, and their major organs are all beginning to form. Because of how pregnancy is calculated, you are actually already one month pregnant at this stage – only eight more to go until you meet your baby! ",
+        "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
         "Your baby will now be around a foot long, and the size of an ear of corn. They weigh around 600g and will be gaining more every week. Their face will now be fully formed with eyelashes, eyebrows and hair. This will still be white due to lack of pigment, but will start to change colour soon.",
         "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41"],
       "es": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
