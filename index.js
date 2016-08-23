@@ -61,34 +61,34 @@ bot.setGetStartedButton((payload, chat) => {
                 });
             });
         });
-    bot.hear([`${questionBtn1}`], (payload, chat) => {
-        chat.conversation((convo) => {
-            convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
-                const text = payload.message.text;
-                var dueDateFormatted = chrono.parseDate(text);
-                var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
-                console.log(diff);
-                diff = Math.ceil(diff) - 1;
-                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                    convo.say('\ntest').then(() => {
-                        chat.say({
-                            attachment: 'image',
-                            url: `${Strings.words.pictures.url[diff]}`,
-                            typing: true
-                        })
+        bot.hear([`${questionBtn1}`], (payload, chat) => {
+            chat.conversation((convo) => {
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
+                    const text = payload.message.text;
+                    var dueDateFormatted = chrono.parseDate(text);
+                    var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
+                    console.log(diff);
+                    diff = Math.ceil(diff) - 1;
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
+                        convo.say('\ntest').then(() => {
+                            chat.say({
+                                attachment: 'image',
+                                url: `${Strings.words.pictures.url[diff]}`,
+                                typing: true
+                            })
+                        });
                     });
                 });
             });
         });
     });
 });
-});
 
-// bot.on('message', (payload, chat) => {
-//     new CronJob('0 * * * * *', function () {
-//         chat.say('Cron message every minute', { typing: true });
-//     }, null, true, 'America/Los_Angeles');
-// });
+bot.on('message', (payload, chat) => {
+    new CronJob('0 * * * * *', function () {
+        chat.sendTextMessage('Cron message every minute');
+    }, null, true, 'America/Los_Angeles');
+});
 
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
@@ -120,16 +120,18 @@ bot.hear(['help'], (payload, chat) => {
 });
 
 bot.hear(/gif (.*)/i, (payload, chat, data) => {
-    const query = data.match[1];
-    chat.say('Searching a good gif ..');
-    fetch(GIPHY_URL + query)
-        .then(res => res.json())
-        .then(json => {
-            chat.say({
-                attachment: 'image',
-                url: json.data[0].images.fixed_height.url
-            });
-        })
+  const query = data.match[1];
+  chat.say('Searching for the perfect gif...');
+  fetch(GIPHY_URL + query)
+    .then(res => res.json())
+    .then(json => {
+      chat.say({
+        attachment: 'image',
+        url: json.data.image_url
+      }, {
+        typing: true
+      });
+    });
 });
 
 bot.start(port || 5000); //fix heroku problem 60 seconds
