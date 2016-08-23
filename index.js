@@ -56,9 +56,9 @@ bot.setGetStartedButton((payload, chat) => {
                     const text = payload.message.text;
                     console.log(text);
                     var dueDateFormatted = chrono.parseDate(text);
-                    var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
+                    var diff = Math.ceil(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
                     console.log(diff);
-                    diff = Math.ceil(diff) - 1;
+                    //diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
                         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
                             //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
@@ -80,7 +80,7 @@ bot.setGetStartedButton((payload, chat) => {
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
-                    diff = Math.ceil(diff) - 1;
+                    diff = Math.ceil(diff);
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
                         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
                             //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
