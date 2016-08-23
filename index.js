@@ -61,9 +61,10 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn1}`], (payload, chat) => {
             chat.conversation((convo) => {
-                convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
+                    console.log(dueDateFormatted);
                     var diff = Date.diff(chrono.parseDate('Today')-dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
