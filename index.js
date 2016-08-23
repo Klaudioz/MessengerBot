@@ -80,13 +80,15 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        convo.say('\ntest').then(() => {
-                            chat.say({
-                                attachment: 'image',
-                                url: `${Strings.words.pictures.url[diff]}`,
-                                typing: true
-                            })
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
+                            convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
+                                chat.say({
+                                    attachment: 'image',
+                                    url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
+                                    typing: true
+                                })
+                            });
                         });
                     });
                 });
