@@ -15,13 +15,12 @@ var Strings = require('./strings');
 //var obj = JSON.parse(tz);
 
 var fs = require("fs");
- console.log("\n *STARTING* \n");
 // Get content from file
  var contents = fs.readFileSync("timezones.json");
 // Define to JSON type
  var jsonContent = JSON.parse(contents);
 // Get Value from JSON
- console.log("User Name:", jsonContent["-3"]);
+// console.log("User Name:", jsonContent["-3"]);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
@@ -100,7 +99,7 @@ bot.on('message', (payload, chat) => {
             //chat.sendTextMessage('Cron message every minute');
             console.log(`locale: ${user.timezone}`)
             console.log(`${obj}`);
-        }, null, true, 'America/Los_Angeles'); //'America/Los_Angeles'
+        }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
 
