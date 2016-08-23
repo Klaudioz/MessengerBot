@@ -54,7 +54,7 @@ bot.setGetStartedButton((payload, chat) => {
                     console.log(diff);
                     diff = Math.ceil(diff)-1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => {
-                        chat.say(`${sayy(`${language}`, Strings.words.words[diff])}`);
+                        convo.say(`${sayy(`${language}`, Strings.words.words[diff])}`);
                     });
                 });
             });
