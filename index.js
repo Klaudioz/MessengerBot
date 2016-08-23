@@ -50,11 +50,13 @@ bot.setGetStartedButton((payload, chat) => {
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        chat.say({
-                            attachment: 'image',
-                            url: `${Strings.words.pictures.url[diff]}`,
-                            typing: true
-                        })
+                        convo.say('\ntest').then(() => {
+                            chat.say({
+                                attachment: 'image',
+                                url: `${Strings.words.pictures.url[diff]}`,
+                                typing: true
+                            })
+                        });
                     });
                 });
             });
@@ -65,7 +67,7 @@ bot.setGetStartedButton((payload, chat) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
                     console.log(dueDateFormatted);
-                    var diff = Date.diff(chrono.parseDate('Today'),dueDateFormatted).weeks();
+                    var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {

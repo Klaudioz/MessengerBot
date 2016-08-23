@@ -29,10 +29,6 @@ var words = {
     "en": "You're in week",
     "es": "Vas en la semana"
   },
-  "months": {
-    "en": ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
-    "es": ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
-  },
   "pictures": {
     "url": ['0', '1', 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-2-fertilization_4x3.jpg',
       'http://assets.babycenter.com/ims/2015/01/pregnancy-week-3-blastocycst_4x3.jpg',
