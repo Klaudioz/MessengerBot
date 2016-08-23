@@ -49,8 +49,8 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        convo.say('\ntest').then(() => {
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby)[diff]}`).then(() => {
+                        convo.say(`${sayy(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
                                 url: `${Strings.words.pictures.url[diff]}`,
@@ -66,16 +66,17 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     var dueDateFormatted = chrono.parseDate(text);
-                    console.log(dueDateFormatted);
                     var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        chat.say({
-                            attachment: 'image',
-                            url: `${Strings.words.pictures.url[diff]}`,
-                            typing: true
-                        })
+                        convo.say('\ntest').then(() => {
+                            chat.say({
+                                attachment: 'image',
+                                url: `${Strings.words.pictures.url[diff]}`,
+                                typing: true
+                            })
+                        });
                     });
                 });
             });
