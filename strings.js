@@ -26,8 +26,8 @@ var words = {
     "es": "Por favor ingresa la fecha de tu ultima menstruación."
   },
   "your_week": {
-    "en": "You're in week",
-    "es": "Vas en la semana"
+    "en": "Week",
+    "es": "Semana"
   },
   "pictures": {
     "url": ['0', '1', 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-2-fertilization_4x3.jpg',

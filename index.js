@@ -54,6 +54,7 @@ bot.setGetStartedButton((payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
+                    console.log(text);
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
