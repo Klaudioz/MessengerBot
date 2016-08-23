@@ -33,6 +33,9 @@ var words = {
     "en": ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
     "es": ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
   },
+  "pictures": {
+    "url": ['0','1','2','3','4','5','6','7','8','9','10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22','23','http://assets.babycenter.com/ims/2015/01/pregnancy-week-24-lung-development_4x3.jpg','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42']
+  },
   "weeks": {
     "en": ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22','23',
       "Your baby is growing steadily, having gained about 4 ounces since last week. That puts him at about 1 1/3 pounds.",

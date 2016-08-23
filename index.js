@@ -56,7 +56,7 @@ bot.setGetStartedButton((payload, chat) => {
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
                         chat.say({
                             attachment: 'image',
-                            url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
+                            url: `${Strings.words.pictures.url[diff]}`,
                             typing: true
                         })
                     });
