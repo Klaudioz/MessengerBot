@@ -53,9 +53,9 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff)-1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => {
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n${sayy(`${language}`, Strings.words.words[diff])}`).then(() => {
                         convo.say(`${sayy(`${language}`, Strings.words.words[diff])}`);
-                    });
+                        });
                 });
             });
         });
