@@ -52,10 +52,14 @@ bot.setGetStartedButton((payload, chat) => {
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
-                    diff = Math.ceil(diff)-1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.words[diff])}`);
-                        });
+                    diff = Math.ceil(diff) - 1;
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
+                        chat.say({
+                            attachment: 'image',
+                            url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
+                            typing: true
+                        })
+                    });
                 });
             });
         });
@@ -66,9 +70,8 @@ bot.setGetStartedButton((payload, chat) => {
                     var dueDateFormatted = chrono.parseDate(text);
                     var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
                     console.log(diff);
-                    diff = Math.ceil(diff)-1;
+                    diff = Math.ceil(diff) - 1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => chat.say({
-                        text: 'aaaa',
                         attachment: 'image',
                         url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
                         typing: true

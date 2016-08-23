@@ -26,8 +26,8 @@ var words = {
     "es": "Por favor ingresa la fecha de tu ultima menstruación."
   },
   "your_week": {
-    "en": "You're in week ",
-    "es": "Vas en la semana "
+    "en": "You're in week",
+    "es": "Vas en la semana"
   },
   "months": {
     "en": ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
