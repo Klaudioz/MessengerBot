@@ -77,7 +77,11 @@ bot.setGetStartedButton((payload, chat) => {
                 });
             });
         });
-
+        chat.say({
+            attachment: 'image',
+            url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
+            typing: true
+        });
     });
 });
 
