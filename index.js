@@ -1,8 +1,8 @@
 'use strict';
 
 var traverse = require('traverse');
-var express = require('express');
-var moment = require('moment');
+//var express = require('express');
+//var moment = require('moment');
 var BootBot = require('bootbot');
 var fetch = require('node-fetch');
 var chrono = require('chrono-node');
@@ -85,9 +85,11 @@ bot.setGetStartedButton((payload, chat) => {
 });
 
 bot.on('message', (payload, chat) => {
-    new CronJob('0 * * * * *', function () {
-        chat.sendTextMessage('Cron message every minute');
-    }, null, true, 'America/Los_Angeles');
+    chat.getUserProfile().then((user) => {
+        new CronJob('0 * * * * *', function () {
+            chat.sendTextMessage('Cron message every minute');
+        }, null, true, 'America/Los_Angeles');
+    });
 });
 
 bot.on('attachment', (payload, chat) => {
@@ -120,18 +122,18 @@ bot.hear(['help'], (payload, chat) => {
 });
 
 bot.hear(/gif (.*)/i, (payload, chat, data) => {
-  const query = data.match[1];
-  chat.say('Searching for the perfect gif...');
-  fetch(GIPHY_URL + query)
-    .then(res => res.json())
-    .then(json => {
-      chat.say({
-        attachment: 'image',
-        url: json.data.image_url
-      }, {
-        typing: true
-      });
-    });
+    const query = data.match[1];
+    chat.say('Searching for the perfect gif...');
+    fetch(GIPHY_URL + query)
+        .then(res => res.json())
+        .then(json => {
+            chat.say({
+                attachment: 'image',
+                url: json.data.image_url
+            }, {
+                    typing: true
+                });
+        });
 });
 
 bot.start(port || 5000); //fix heroku problem 60 seconds
