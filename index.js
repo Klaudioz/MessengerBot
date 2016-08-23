@@ -50,27 +50,7 @@ bot.setGetStartedButton((payload, chat) => {
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby)[diff]}`).then(() => {
-                        convo.say(`${sayy(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
-                            chat.say({
-                                attachment: 'image',
-                                url: `${Strings.words.pictures.url[diff]}`,
-                                typing: true
-                            })
-                        });
-                    });
-                });
-            });
-        });
-        bot.hear([`${questionBtn1}`], (payload, chat) => {
-            chat.conversation((convo) => {
-                convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
-                    const text = payload.message.text;
-                    var dueDateFormatted = chrono.parseDate(text);
-                    var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
-                    console.log(diff);
-                    diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
-                        convo.say('\ntest').then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
                                 url: `${Strings.words.pictures.url[diff]}`,
@@ -82,6 +62,27 @@ bot.setGetStartedButton((payload, chat) => {
             });
         });
     });
+    bot.hear([`${questionBtn1}`], (payload, chat) => {
+        chat.conversation((convo) => {
+            convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
+                const text = payload.message.text;
+                var dueDateFormatted = chrono.parseDate(text);
+                var diff = Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks();
+                console.log(diff);
+                diff = Math.ceil(diff) - 1;
+                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks)[diff]}`).then(() => {
+                    convo.say('\ntest').then(() => {
+                        chat.say({
+                            attachment: 'image',
+                            url: `${Strings.words.pictures.url[diff]}`,
+                            typing: true
+                        })
+                    });
+                });
+            });
+        });
+    });
+});
 });
 
 // bot.on('message', (payload, chat) => {
