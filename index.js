@@ -12,7 +12,7 @@ var CronJob = require('cron').CronJob;
 var Config = require('./config');
 var Strings = require('./strings');
 var tz = require('./timezones');
-var obj = $.parseJSON(tz);
+var obj = JSON.parse(tz);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
