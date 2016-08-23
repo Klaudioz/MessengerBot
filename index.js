@@ -87,7 +87,7 @@ bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
-            console.log("CRON every minute TEST")
+            console.log(`locale: ${user.locale}`)
         }, null, true, 'America/Los_Angeles');
     });
 });
