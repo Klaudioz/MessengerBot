@@ -58,8 +58,8 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby)[diff][0]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby)[diff][1]}`).then(() => {
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
                             convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
                                 chat.say({
                                     attachment: 'image',
