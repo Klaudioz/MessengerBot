@@ -54,14 +54,7 @@ bot.setGetStartedButton((payload, chat) => {
                     console.log(diff);
                     diff = Math.ceil(diff)-1;
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}`).then(() => {
-                        console.log("here");
-                        convo.say(`${sayy(`${language}`, Strings.words.words[diff])}`).then(() => {
-                            convo.say({
-                                attachment: 'image',
-                                url: 'http://assets.babycenter.com/ims/2015/01/pregnancy-week-23-hearing_square.jpg?width=475',
-                                typing: true
-                            });
-                        });
+                        chat.say(`${sayy(`${language}`, Strings.words.words[diff])}`);
                     });
                 });
             });
