@@ -61,7 +61,6 @@ bot.setGetStartedButton((payload, chat) => {
                 });
             });
         });
-    });
     bot.hear([`${questionBtn1}`], (payload, chat) => {
         chat.conversation((convo) => {
             convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
