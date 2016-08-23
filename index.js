@@ -14,7 +14,7 @@ var Strings = require('./strings');
 
 var port = process.env.PORT || 5000;
 var app = express();
-const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC';
+const GIPHY_URL = 'http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&tag=';
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
