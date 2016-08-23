@@ -11,6 +11,8 @@ var CronJob = require('cron').CronJob;
 
 var Config = require('./config');
 var Strings = require('./strings');
+var tz = require('./timezones');
+var obj = $.parseJSON(tz);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
@@ -88,7 +90,8 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             console.log(`locale: ${user.timezone}`)
-        }, null, true, `${user.timezone}`); //'America/Los_Angeles'
+            console.log(`${obj}`);
+        }, null, true, 'America/Los_Angeles'); //'America/Los_Angeles'
     });
 });
 
