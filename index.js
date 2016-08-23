@@ -16,9 +16,9 @@ var Strings = require('./strings');
 
 var fs = require("fs");
 // Get content from file
- var contents = fs.readFileSync("timezones.json");
+var contents = fs.readFileSync("timezones.json");
 // Define to JSON type
- var jsonContent = JSON.parse(contents);
+var jsonContent = JSON.parse(contents);
 // Get Value from JSON
 // console.log("User Name:", jsonContent["-3"]);
 
@@ -58,13 +58,15 @@ bot.setGetStartedButton((payload, chat) => {
                     var diff = 40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks();
                     console.log(diff);
                     diff = Math.ceil(diff) - 1;
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby)[diff]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
-                            chat.say({
-                                attachment: 'image',
-                                url: `${Strings.words.pictures.url[diff]}`,
-                                typing: true
-                            })
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby)[diff][0]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby)[diff][1]}`).then(() => {
+                            convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
+                                chat.say({
+                                    attachment: 'image',
+                                    url: `${Strings.words.pictures.url[diff]}`,
+                                    typing: true
+                                })
+                            });
                         });
                     });
                 });
@@ -97,7 +99,7 @@ bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
-           // console.log(`locale: ${user.timezone}`)
+            // console.log(`locale: ${user.timezone}`)
         }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
