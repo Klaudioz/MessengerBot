@@ -88,7 +88,7 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             console.log(`locale: ${user.timezone}`)
-        }, null, true, 'America/Los_Angeles');
+        }, null, true, `${user.timezone}`); //'America/Los_Angeles'
     });
 });
 
