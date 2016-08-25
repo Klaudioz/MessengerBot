@@ -62,7 +62,7 @@ bot.setGetStartedButton((payload, chat) => {
         })
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
-                convo.say().then(()=>askWeeklyMsg(convo));
+                convo.say().then(() => askWeeklyMsg(convo));
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     dueDateFormatted = chrono.parseDate(text);
