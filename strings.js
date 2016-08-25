@@ -6,8 +6,8 @@ var words = {
     "es": "Hola"
   },
   "welcome": {
-    "en": "Welcome to BabyProgress !!, I'll be sending to you weekly information about the progress of your baby.\nBut before I've to ask you just 2 question:",
-    "es": "Bienvenido a BabyProgress !!, te estaré enviando información semanalmente sobre el progreso de tu bebe.\nPero antes debo hacerte solo 2 preguntas:"
+    "en": "Welcome to BabyProgress !, I'll be sending to you weekly information about the progress of your baby.\nBut before I've to ask you just 2 questions:",
+    "es": "Bienvenido a BabyProgress !, te estaré enviando información semanalmente sobre el progreso de tu bebe.\nPero antes debo hacerte solo 2 preguntas:"
   },
   "first_question": {
     "en": "Please, tell me the due date or the first day of last menstrual period.",
@@ -158,7 +158,7 @@ var words = {
         "Your baby is using your tummy as quite a little activity gym by week 18 and doing a whole lot of kicking, rolling and tumbling around. Now that they have developed a grip, they will be grasping hold of their umbilical cord too – a built-in play thing!",
         "Your baby’s arms and legs are now in proportion and moving with more limb control as the cartilage begins hardening to bone. Their skin is now losing its translucent look and beginning to develop pigment which will determine their skin tone. It’s also possible begin to develop hair on their scalp.",
         "Although they are mainly just growing bigger and stronger now, there are some key elements of their development going on as the nerves in their brain which control the senses are still forming, eventually enabling them to smell, see, hear, taste and touch.",
-        "Their eyebrows and eyelids have now formed and it’s possible for them to blink. Amazingly your baby'll now already have taste buds and can taste a variety of different flavours depending on what you’re eating and what’s entering the Amniotic fluid. They will be swallowing this fluid now as they practice their technique.",
+        "Their eyebrows and eyelids have now formed and it’s possible for them to blink. Amazingly your baby'll now already have taste buds and can taste various flavours depending on what you’re eating and what’s entering the Amniotic fluid. They will be swallowing this fluid now as they practice their technique.",
         "Their eyes will also have formed, but due to a lack of pigment in their iris they won’t have an eye colour yet. It’s also common for baby’s to be born with one eye colour but for them to change in the first few months. Their other organs continue to grow with their pancreas producing essential hormones and their lungs.",
         "Their eyes are now fully formed but they don't have any colour yet. There is probably still just enough space for your baby to be turning somersaults – although probably not for much longer. It’s also possible that you might be able to see your baby moving under your clothes if they decide to be particularly active!.",
         "Even though your baby is mainly just laying down flat now, there are some changes also taking place within their body. Their little lungs are now maturing so they can breathe air rather than fluid, and their ears are starting to further develop so they can properly work out sounds – mainly your heartbeat and voice!",
