@@ -24,6 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
+var dueDateFormatted;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -55,7 +56,7 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
                     //console.log(text);
-                    var dueDateFormatted = chrono.parseDate(text);
+                    dueDateFormatted = chrono.parseDate(text);
                     console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
                     var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
                     console.log(diff);
@@ -78,7 +79,7 @@ bot.setGetStartedButton((payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
                     const text = payload.message.text;
-                    var dueDateFormatted = chrono.parseDate(text);
+                    dueDateFormatted = chrono.parseDate(text);
                     console.log((Date.diff(chrono.parseDate('Today'), dueDateFormatted)).days());
                     var diff = Math.floor(Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks());
                     console.log(diff);
@@ -105,6 +106,7 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
+            console.log(dueDateFormatted);
         }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
