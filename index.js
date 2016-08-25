@@ -59,7 +59,7 @@ bot.setGetStartedButton((payload, chat) => {
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
-        });
+        }).then(() => askWeeklyMsg(convo));
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
