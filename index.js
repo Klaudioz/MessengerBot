@@ -62,25 +62,21 @@ bot.setGetStartedButton((payload, chat) => {
         })
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
-                convo.say('').then(() => {
-                    askWeeklyMsg(convo).then(() => {
-                        convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
-                            const text = payload.message.text;
-                            dueDateFormatted = chrono.parseDate(text);
-                            console.log(dueDateFormatted);
-                            console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
-                            var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
-                            convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
-                                convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
-                                    //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
-                                    chat.say({
-                                        attachment: 'image',
-                                        url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
-                                        typing: true
-                                    })
-                                    //});
-                                });
-                            });
+                convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
+                    const text = payload.message.text;
+                    dueDateFormatted = chrono.parseDate(text);
+                    console.log(dueDateFormatted);
+                    console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
+                    var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
+                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
+                            chat.say({
+                                attachment: 'image',
+                                url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
+                                typing: true
+                            })
+                            //});
                         });
                     });
                 });
