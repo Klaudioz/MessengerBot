@@ -54,12 +54,22 @@ bot.setGetStartedButton((payload, chat) => {
             });
         };
 
+        bot.on('hello', (payload, chat) => {
+            chat.conversation((convo) => {
+                // convo is available here...
+                convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    msgDateWeek = chrono.parseDate(text);
+                });
+            });
+        });
+
         var questionBtn0 = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
         var questionBtn1 = `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`;
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
-        }).then(() => askWeeklyMsg(convo));
+        })
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
