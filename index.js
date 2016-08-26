@@ -131,8 +131,8 @@ bot.hear(['hi'], (payload, chat) => {
 
 bot.hear(['length'], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        //chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.size)[weeksNum]}`);
-        chat.say('I am sorry. I cant receive any attachment yet');
+        chat.say(`Length in week ${weeksNum} is: `);
+        //chat.say('I am sorry. I cant receive any attachment yet');
     });
 });
 
