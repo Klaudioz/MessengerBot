@@ -74,6 +74,12 @@ var words = {
       'http://assets.babycenter.com/ims/2015/01/pregnancy-week-40-soft-spots_4x3.jpg',
       'http://assets.babycenter.com/ims/2015/01/pregnancy-week-41-amniotic-fluid_4x3.jpg']
   },
+
+  "size": {
+    "en": [["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0.63 inch", "0.04 ounce"],["0.90 inch", "0.07 ounce"],["1.22 inch", "0.14 ounce"],["1.61 inch", "0.25 ounce"],["2.13 inches", "0.49 ounce"],["2.91 inches", "0.81 ounce"],["3.42 inches", "1.52 ounce"],["3.98 inches", "2.47 ounces"],["4.57 inches", "3.53 ounces"],["5.12 inches", "4.94 ounces"],["5.59 inches", "6.70 ounces"],["6.02 inches", "8.47 ounces"],["6.46 inches", "10.58 ounces"],["10.51 inches", "12.70 ounces"],["10.94 inches", "15.17 ounces"],["11.38 inches", "1.10 pound"],["11.81 inches", "1.32 pound"],["13.62 inches", "1.46 pound"],["14.02 inches", "1.68 pound"],["14.41 inches", "1.93 pound"],["14.80 inches", "2.22 pounds"],["15.2 inches", "2.54 pounds"],["15.71 inches", "2.91 pounds"],["16.18 inches", "3.31 pounds"],["16.69 inches", "3.75 pounds"],["17.20 inches", "4.23 pounds"],["17.72 inches", "4.73 pounds"],["18.19 inches", "5.25 pounds"],["18.66 inches", "5.78 pounds"],["19.13 inches", "6.30 pounds"],["19.61 inches", "6.80 pounds"],["19.96 inches", "7.25 pounds"],["20.16 inches", "7.63 pounds"],["20.35 inches", "7.93 pounds"],["20.28 inches", "8.12 pounds"]],
+    "es": [["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["0", "0"], ["1.6 cm", "1 gr"],["2.3 cm", "2 grs"],["3.1 cm", "4 grs"],["4.1 cm", "7 grs"],["5.4 cm", "14 grs"],["7.4 cm", "23 grs"],["8.7 cm", "43 grs"],["10.1 cm", "70 grs"],["11.6 cm", "100 grs"],["13 cm", "140 grs"],["14.2 cm", "190 grs"],["15.3 cm", "240 grs"],["16.4 cm", "300 grs"],["26.7 cm", "360 grs"],["27.8 cm", "430 grs"],["28.9 cm", "501 grs"],["30 cm", "600 grs"],["34.6 cm", "660 grs"],["35.6 cm", "760 grs"],["36.6 cm", "875 grs"],["37.6 cm", "1.05 kg"],["38.6 cm", "1.15 kg"],["39.9 cm", "1.32 kg"],["41.1 cm", "1.5 kg"],["42.4 cm", "1.7 kg"],["43.7 cm", "1.92 kg"],["45 cm", "2.15 kg"],["46.2 cm", "2.38 kg"],["47.4 cm", "2.62 kg"],["48.6 cm", "2.86 kg"],["49.8 cm", "3.08 kg"],["50.7 cm", "3.29 kg"],["51.2 cm", "3.46 kg"],["51.5 cm", "3.6 kg"],["51.7 cm", "3.69 kg"]]
+  },
+
   "weeks": {
     "mom": {
       "en": [

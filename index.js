@@ -25,7 +25,7 @@ var jsonContent = JSON.parse(contents);
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
 var dueDateFormatted; //store date given for the user
-var msgDateWeek;
+var msgDateWeek, weeksNum;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -67,13 +67,13 @@ bot.setGetStartedButton((payload, chat) => {
                     dueDateFormatted = chrono.parseDate(text);
                     console.log(dueDateFormatted);
                     console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
-                    var diff = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
-                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
+                    weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
-                                url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
+                                url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                 typing: true
                             })
                             //});
@@ -89,13 +89,13 @@ bot.setGetStartedButton((payload, chat) => {
                     dueDateFormatted = chrono.parseDate(text);
                     console.log(dueDateFormatted);
                     console.log((Date.diff(chrono.parseDate('Today'), dueDateFormatted)).days());
-                    var diff = Math.floor(Date.diff(chrono.parseDate('Today'), dueDateFormatted).weeks());
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${diff}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[diff]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[diff]}`).then(() => {
-                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[diff]}`).then(() => {
+                    weeksNum = Math.floor(Date.weeksNum(chrono.parseDate('Today'), dueDateFormatted).weeks());
+                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
-                                url: `${Strings.words.pictures.url[diff]}`, //`${Strings.words.pictures.url[diff]}`
+                                url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                 typing: true
                             })
                             //});
@@ -126,6 +126,12 @@ bot.on('attachment', (payload, chat) => {
 bot.hear(['hi'], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say(`Hello, ${user.first_name} !`, { typing: true });
+    });
+});
+
+bot.hear(['length'], (payload, chat) => {
+    chat.getUserProfile().then((user) => {
+        chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.size[weeksNum][0])}`);
     });
 });
 
