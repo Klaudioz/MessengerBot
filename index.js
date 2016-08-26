@@ -131,7 +131,7 @@ bot.hear(['hi'], (payload, chat) => {
 
 bot.hear(['length'], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.size)[10]}`);
+        chat.say(`Length in week ${weeksNum} is: `);
         console.log(Strings.words.size);
         console.log(Strings.words.size[25]);
         console.log(Strings.words.size[weeksNum]);
