@@ -24,7 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek, weeksNum, dueDateFormatted;
+var msgDateWeek, weeksNum, dueDateFormatted, language;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -43,7 +43,7 @@ const bot = new BootBot({
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        var language = user.locale.substring(0, 2).toLowerCase();
+        language = user.locale.substring(0, 2).toLowerCase();
         // console.log(`Language: ${language}`);
 
         const askWeeklyMsg = (convo) => {
