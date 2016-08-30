@@ -130,7 +130,7 @@ bot.hear(['hi'], (payload, chat) => {
 });
 
 bot.hear(['length'], (payload, chat) => {
-    chat.conversation((convo) => {
+    //chat.conversation((convo) => {
         console.log("1234");
         var test = convo.get('dueDateFormatted');
         console.log(`${test}`);
@@ -141,7 +141,7 @@ bot.hear(['length'], (payload, chat) => {
         //console.log(Strings.words.size[25]);
         //console.log(Strings.words.size[weeksNum]);
         //console.log(Strings.words.size.en[25]);
-    });
+    //});
 });
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
