@@ -24,8 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek = new Date();
-var weeksNum, dueDateFormatted, language, hourCron, dayCron;
+var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron, dayCron;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -57,11 +56,12 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
                     const text = payload.message.text;
                     msgDateWeek = chrono.parseDate(text);
-                    console.log('timestamp: ' + msgDateWeek);
-                    hourCron = msgDateWeek.getHours;
+                    var msgDateWeekMoment = moment(msgDateWeek);
+                    console.log('timestamp moment: ' + msgDateWeekMoment);
+                    hourCron = msgDateWeekMoment.hour();
                     console.log('hour: ' + hourCron);
-                    dayCron = msgDateWeek.getDay;
-                    console.log('hour: ' + dayCron);
+                    dayCron = msgDateWeekMoment.day();
+                    console.log('day: ' + dayCron);
                     convo.say(``).then(() => {
                         convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                             const text = payload.message.text;
