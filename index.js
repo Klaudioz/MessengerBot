@@ -130,8 +130,8 @@ bot.hear(['hi'], (payload, chat) => {
 });
 
 bot.hear(['length'], (payload, chat) => {
-    //chat.conversation((convo) => {
-    chat.getUserProfile().then((user) => {
+    chat.conversation((convo) => {
+    //chat.getUserProfile().then((user) => {
         console.log("1234");
         var test = convo.get('dueDateFormatted');
         console.log(test);
