@@ -112,8 +112,8 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
-            //console.log(dueDateFormatted);
-            //console.log(msgDateWeek);
+            console.log(dueDateFormatted);
+            console.log(msgDateWeek);
         }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
@@ -129,17 +129,14 @@ bot.hear(['hi'], (payload, chat) => {
     });
 });
 
-bot.hear(['length'], (payload, chat) => {
-    //chat.getUserProfile().then((user) => {
-        console.log("1234");
-        console.log(dueDateFormatted);
-        chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
-        //console.log(`${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
-        //console.log(Strings.words.size[25]);
-        //console.log(Strings.words.size[weeksNum]);
-        //console.log(Strings.words.size.en[25]);
-    });
-//});
+bot.hear(['length','largo','tamaño'], (payload, chat) => {
+    //console.log(dueDateFormatted);
+    chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
+});
+
+bot.hear(['weight','peso'], (payload, chat) => {
+    chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.weight)[weeksNum]}`);
+});
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
