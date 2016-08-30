@@ -136,7 +136,7 @@ bot.hear(['length'], (payload, chat) => {
         //console.log(`${sayy(`${language}`, Strings.words.size)[weeksNum][0]}`);
         //console.log(Strings.words.size[25]);
         //console.log(Strings.words.size[weeksNum]);
-        console.log(Strings.words.size[25][0]);
+        console.log(Strings.words.size.en[25][0]);
     });
 });
 
