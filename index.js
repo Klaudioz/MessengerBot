@@ -44,20 +44,19 @@ const bot = new BootBot({
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         language = user.locale.substring(0, 2).toLowerCase();
-        // console.log(`Language: ${language}`);
-
-        const askWeeklyMsg = (convo) => {
-            convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
-                const text = payload.message.text;
-                msgDateWeek = chrono.parseDate(text);
-            });
-        };
-
         var questionBtn0 = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
         var questionBtn1 = `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`;
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
+        }).then(() => {
+            chat.conversation((convo) => {
+                chat.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    msgDateWeek = chrono.parseDate(text);
+                    console.log(msgDateWeek);
+                });
+            });
         })
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
@@ -129,12 +128,12 @@ bot.hear(['hi'], (payload, chat) => {
     });
 });
 
-bot.hear(['length','largo','tamaño'], (payload, chat) => {
+bot.hear(['length', 'largo', 'tamaño'], (payload, chat) => {
     //console.log(dueDateFormatted);
     chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
 });
 
-bot.hear(['weight','peso'], (payload, chat) => {
+bot.hear(['weight', 'peso'], (payload, chat) => {
     chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.weight)[weeksNum]}`);
 });
 
