@@ -60,23 +60,28 @@ bot.setGetStartedButton((payload, chat) => {
         });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
-                askWeeklyMsg(convo).then(() => {
-                    convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
-                        const text = payload.message.text;
-                        dueDateFormatted = chrono.parseDate(text);
-                        //convo.set('dueDateFormatted', dueDateFormatted);
-                        console.log(dueDateFormatted);
-                        console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
-                        weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
-                        convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-                            convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                                //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
-                                chat.say({
-                                    attachment: 'image',
-                                    url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
-                                    typing: true
-                                })
-                                //});
+                convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
+                    const text = payload.message.text;
+                    msgDateWeek = chrono.parseDate(text);
+                    console.log(msgDateWeek);
+                    convo.say(``).then(() => {
+                        convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
+                            const text = payload.message.text;
+                            dueDateFormatted = chrono.parseDate(text);
+                            //convo.set('dueDateFormatted', dueDateFormatted);
+                            console.log(dueDateFormatted);
+                            console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
+                            weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                            convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                                convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                                    //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
+                                    chat.say({
+                                        attachment: 'image',
+                                        url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
+                                        typing: true
+                                    })
+                                    //});
+                                });
                             });
                         });
                     });
