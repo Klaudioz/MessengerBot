@@ -24,7 +24,8 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron;
+var msgDateWeek = new Date();
+var weeksNum, dueDateFormatted, language, hourCron, dayCron;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -47,13 +48,6 @@ bot.setGetStartedButton((payload, chat) => {
         var questionBtn0 = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
         var questionBtn1 = `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`;
 
-        const askWeeklyMsg = (convo) => {
-            convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
-                const text = payload.message.text;
-                msgDateWeek = chrono.parseDate(text);
-            });
-        };
-
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
@@ -63,9 +57,11 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
                     const text = payload.message.text;
                     msgDateWeek = chrono.parseDate(text);
-                    hourCron = msgDateWeek.get('hour');
-                    console.log(msgDateWeek);
-                    console.log(hourCron);
+                    console.log('timestamp: ' + msgDateWeek);
+                    hourCron = msgDateWeek.getHours;
+                    console.log('hour: ' + hourCron);
+                    dayCron = msgDateWeek.getDay;
+                    console.log('hour: ' + dayCron);
                     convo.say(``).then(() => {
                         convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                             const text = payload.message.text;
