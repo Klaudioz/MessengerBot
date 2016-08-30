@@ -46,36 +46,38 @@ bot.setGetStartedButton((payload, chat) => {
         language = user.locale.substring(0, 2).toLowerCase();
         var questionBtn0 = `${sayy(`${language}`, Strings.words.first_question_btn)[0]}`;
         var questionBtn1 = `${sayy(`${language}`, Strings.words.first_question_btn)[1]}`;
+
+        const askWeeklyMsg = (convo) => {
+            convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
+                const text = payload.message.text;
+                msgDateWeek = chrono.parseDate(text);
+            });
+        };
+
         chat.say({
             text: `${sayy(`${language}`, Strings.words.greetings)}, ${user.first_name} !.${sayy(`${language}`, Strings.words.welcome)}`,
             quickReplies: [`${questionBtn0}`, `${questionBtn1}`]
-        }).then(() => {
-            chat.conversation((convo) => {
-                chat.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
-                    const text = payload.message.text;
-                    msgDateWeek = chrono.parseDate(text);
-                    console.log(msgDateWeek);
-                });
-            });
-        })
+        });
         bot.hear([`${questionBtn0}`], (payload, chat) => {
             chat.conversation((convo) => {
-                convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
-                    const text = payload.message.text;
-                    dueDateFormatted = chrono.parseDate(text);
-                    //convo.set('dueDateFormatted', dueDateFormatted);
-                    console.log(dueDateFormatted);
-                    console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
-                    weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
-                    convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-                        convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
-                            chat.say({
-                                attachment: 'image',
-                                url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
-                                typing: true
-                            })
-                            //});
+                askWeeklyMsg(convo).then(() => {
+                    convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
+                        const text = payload.message.text;
+                        dueDateFormatted = chrono.parseDate(text);
+                        //convo.set('dueDateFormatted', dueDateFormatted);
+                        console.log(dueDateFormatted);
+                        console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
+                        weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
+                        convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                            convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                                //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
+                                chat.say({
+                                    attachment: 'image',
+                                    url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
+                                    typing: true
+                                })
+                                //});
+                            });
                         });
                     });
                 });
