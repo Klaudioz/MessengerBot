@@ -24,7 +24,6 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var dueDateFormatted; //store date given for the user
 var msgDateWeek, weeksNum;
 
 var sayy = function (language, obj) {
@@ -64,7 +63,8 @@ bot.setGetStartedButton((payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
-                    dueDateFormatted = chrono.parseDate(text);
+                    var dueDateFormatted = chrono.parseDate(text);
+                    convo.set('dueDateFormatted', dueDateFormatted);
                     console.log(dueDateFormatted);
                     console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
                     weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
@@ -130,16 +130,15 @@ bot.hear(['hi'], (payload, chat) => {
 });
 
 bot.hear(['length'], (payload, chat) => {
-    chat.getUserProfile().then((user) => {
-        console.log(Strings.words.size.en[25]);
-        console.log(`${weeksNum}`);
+        convo.get('dueDateFormatted');
+        console.log(Strings.words.length.en[25]);
+        //console.log(`${weeksNum}`);
         chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(Strings.words.size);
         //console.log(`${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(Strings.words.size[25]);
         //console.log(Strings.words.size[weeksNum]);
         //console.log(Strings.words.size.en[25]);
-    });
 });
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
