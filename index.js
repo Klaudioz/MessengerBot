@@ -134,6 +134,13 @@ bot.hear(['hi'], (payload, chat) => {
     });
 });
 
+bot.hear(['now'], (payload, chat) => {
+    chat.getUserProfile().then((user) => {
+        var now = moment();
+        chat.say(`${now}`, { typing: true });
+    });
+});
+
 bot.hear(['length', 'largo', 'tamaño'], (payload, chat) => {
     //console.log(dueDateFormatted);
     chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
