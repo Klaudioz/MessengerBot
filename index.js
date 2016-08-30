@@ -134,10 +134,9 @@ bot.hear(['length'], (payload, chat) => {
         chat.say(`Length in week ${weeksNum} is: `);
         //console.log(Strings.words.size);
         console.log(`${sayy(`${language}`, Strings.words.size)[weeksNum][0]}`);
-        //console.log(Strings.words.size[25]);
-        //console.log(Strings.words.size[weeksNum]);
-        //console.log(Strings.words.size[25][0]);
-        //chat.say('I am sorry. I cant receive any attachment yet');
+        console.log(Strings.words.size[25]);
+        console.log(Strings.words.size[weeksNum]);
+        console.log(Strings.words.size[25][0]);
     });
 });
 
