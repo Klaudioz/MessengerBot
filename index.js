@@ -24,7 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek, weeksNum;
+var msgDateWeek, weeksNum, dueDateFormatted;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -63,8 +63,8 @@ bot.setGetStartedButton((payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                     const text = payload.message.text;
-                    var dueDateFormatted = chrono.parseDate(text);
-                    convo.set('dueDateFormatted', dueDateFormatted);
+                    dueDateFormatted = chrono.parseDate(text);
+                    //convo.set('dueDateFormatted', dueDateFormatted);
                     console.log(dueDateFormatted);
                     console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
                     weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
@@ -130,11 +130,11 @@ bot.hear(['hi'], (payload, chat) => {
 });
 
 bot.hear(['length'], (payload, chat) => {
-    chat.conversation((convo) => {
     //chat.getUserProfile().then((user) => {
         console.log("1234");
-        var test = convo.get('dueDateFormatted');
-        console.log(test);
+        console.log(dueDateFormatted);
+        //var test = convo.get('dueDateFormatted');
+        //console.log(test);
         //console.log(`${weeksNum}`);
         //chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(Strings.words.size);
@@ -143,7 +143,7 @@ bot.hear(['length'], (payload, chat) => {
         //console.log(Strings.words.size[weeksNum]);
         //console.log(Strings.words.size.en[25]);
     });
-});
+//});
 
 bot.hear(['hello', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
