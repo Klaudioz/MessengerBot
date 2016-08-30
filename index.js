@@ -133,11 +133,7 @@ bot.hear(['length'], (payload, chat) => {
     //chat.getUserProfile().then((user) => {
         console.log("1234");
         console.log(dueDateFormatted);
-        //var test = convo.get('dueDateFormatted');
-        //console.log(test);
-        //console.log(`${weeksNum}`);
-        //chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
-        //console.log(Strings.words.size);
+        chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(`${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(Strings.words.size[25]);
         //console.log(Strings.words.size[weeksNum]);
