@@ -130,8 +130,8 @@ bot.hear(['hi'], (payload, chat) => {
 });
 
 bot.hear(['length'], (payload, chat) => {
-        convo.get('dueDateFormatted');
-        console.log(Strings.words.length.en[25]);
+        var test = convo.get('dueDateFormatted');
+        console.log(test);
         //console.log(`${weeksNum}`);
         chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
         //console.log(Strings.words.size);
