@@ -24,7 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek, weeksNum, dueDateFormatted, language;
+var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -63,7 +63,9 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
                     const text = payload.message.text;
                     msgDateWeek = chrono.parseDate(text);
+                    hourCron = msgDateWeek.get('hour');
                     console.log(msgDateWeek);
+                    console.log(hourCron);
                     convo.say(``).then(() => {
                         convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                             const text = payload.message.text;
@@ -74,13 +76,11 @@ bot.setGetStartedButton((payload, chat) => {
                             weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
                             convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
                                 convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                                    //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
                                     chat.say({
                                         attachment: 'image',
                                         url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                         typing: true
                                     })
-                                    //});
                                 });
                             });
                         });
@@ -118,8 +118,9 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
-            console.log(dueDateFormatted);
-            console.log(msgDateWeek);
+            //console.log(dueDateFormatted);
+            //console.log(msgDateWeek);
+            chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
         }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
