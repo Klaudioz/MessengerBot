@@ -24,7 +24,7 @@ var jsonContent = JSON.parse(contents);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
-var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron, dayCron;
+var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron, dayCron, minCron;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -58,10 +58,12 @@ bot.setGetStartedButton((payload, chat) => {
                     msgDateWeek = chrono.parseDate(text);
                     var msgDateWeekMoment = moment(msgDateWeek);
                     console.log('timestamp moment: ' + msgDateWeekMoment);
-                    hourCron = msgDateWeekMoment.hour();
-                    console.log('hour: ' + hourCron);
                     dayCron = msgDateWeekMoment.day();
                     console.log('day: ' + dayCron);
+                    hourCron = msgDateWeekMoment.hour();
+                    console.log('hour: ' + hourCron);
+                    minCron = msgDateWeekMoment.minute();
+                    console.log('minute: ' + minCron);
                     convo.say(``).then(() => {
                         convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                             const text = payload.message.text;
@@ -111,7 +113,7 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        new CronJob('0 * * * * *', function () {
+        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
             //console.log(dueDateFormatted);
