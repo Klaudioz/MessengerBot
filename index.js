@@ -112,8 +112,8 @@ bot.on('message', (payload, chat) => {
         new CronJob('0 * * * * *', function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
-            console.log(dueDateFormatted);
-            console.log(msgDateWeek);
+            //console.log(dueDateFormatted);
+            //console.log(msgDateWeek);
         }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
     });
 });
@@ -132,6 +132,7 @@ bot.hear(['hi'], (payload, chat) => {
 bot.hear(['length'], (payload, chat) => {
     chat.conversation((convo) => {
         var test = convo.get('dueDateFormatted');
+        console.log("1234");
         console.log(`${test}`);
         //console.log(`${weeksNum}`);
         //chat.say(`Length in week ${weeksNum} is: ${sayy(`${language}`, Strings.words.length)[weeksNum]}`);
