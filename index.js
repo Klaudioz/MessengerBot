@@ -136,7 +136,7 @@ bot.hear(['hi'], (payload, chat) => {
 
 bot.hear(['now'], (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        var now = moment().utc(`${user.timezone}`);
+        var now = moment().utc(user.timezone);
         chat.say(`${now}`, { typing: true });
     });
 });
