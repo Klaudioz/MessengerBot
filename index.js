@@ -83,7 +83,6 @@ bot.setGetStartedButton((payload, chat) => {
                         });
                     });
                 });
-                convo.end();
             });
         });
         bot.hear([`${questionBtn1}`], (payload, chat) => {
