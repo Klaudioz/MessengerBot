@@ -95,7 +95,6 @@ bot.setGetStartedButton((payload, chat) => {
                     weeksNum = Math.floor(Date.weeksNum(chrono.parseDate('Today'), dueDateFormatted).weeks());
                     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
                         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                            //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
                                 url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
@@ -111,13 +110,11 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        chat.conversation((convo) => {
-            new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+            chat.conversation((convo) => {
                 console.log('CRON message');
-                //chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
                 convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
                     convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                        //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
                         chat.say({
                             attachment: 'image',
                             url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
@@ -126,7 +123,7 @@ bot.on('message', (payload, chat) => {
                     });
                 });
             });
-        }, null, true); //'America/Los_Angeles'
+        }, null, true);
     });
 });
 
