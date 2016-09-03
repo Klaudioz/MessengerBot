@@ -67,7 +67,6 @@ bot.setGetStartedButton((payload, chat) => {
                         convo.ask(`${sayy(`${language}`, Strings.words.asking_due_day)}`, (payload, convo) => {
                             const text = payload.message.text;
                             dueDateFormatted = chrono.parseDate(text);
-                            //convo.set('dueDateFormatted', dueDateFormatted);
                             console.log(dueDateFormatted);
                             console.log(Date.diff(dueDateFormatted, chrono.parseDate('Today')).days());
                             weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks());
@@ -75,10 +74,11 @@ bot.setGetStartedButton((payload, chat) => {
                                 convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
                                     chat.say({
                                         attachment: 'image',
-                                        url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
+                                        url: `${Strings.words.pictures.url[weeksNum]}`,
                                         typing: true
                                     }).then(() => {
-                                        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+                                        //new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+                                        new CronJob(`0 ${minCron} ${hourCron} * * *`, function () {
                                             console.log('CRON message');
                                             weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks()); //recalculate week
                                             convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
@@ -86,7 +86,6 @@ bot.setGetStartedButton((payload, chat) => {
                                                     chat.say({
                                                         attachment: 'image',
                                                         url: `${Strings.words.pictures.url[weeksNum]}`,
-                                                        //                     typing: true
                                                     });
                                                 });
                                             });
@@ -99,7 +98,7 @@ bot.setGetStartedButton((payload, chat) => {
                 });
             });
         });
-        
+
         bot.hear([`${questionBtn1}`], (payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
@@ -112,7 +111,7 @@ bot.setGetStartedButton((payload, chat) => {
                         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
                             chat.say({
                                 attachment: 'image',
-                                url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
+                                url: `${Strings.words.pictures.url[weeksNum]}`,
                                 typing: true
                             })
                         });
@@ -122,27 +121,6 @@ bot.setGetStartedButton((payload, chat) => {
         });
     });
 });
-
-// bot.on('message', (payload, chat) => {
-//     chat.getUserProfile().then((user) => {
-//         var cronRange = `0 ${minCron} ${hourCron} * * ${dayCron}`;
-//         console.log('CRON range' + cronRange);
-//         new CronJob(`${cronRange}`, function () {
-//             console.log('CRON message');
-//             chat.conversation((convo) => {
-//                 convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-//                     convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-//                         chat.say({
-//                             attachment: 'image',
-//                             url: `${Strings.words.pictures.url[weeksNum]}`,
-//                             typing: true
-//                         });
-//                     });
-//                 });
-//             });
-//         }, null, true);
-//     });
-// });
 
 bot.on('attachment', (payload, chat) => {
     // Reply to the user
