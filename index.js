@@ -56,7 +56,7 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
                     const text = payload.message.text;
                     msgDateWeek = chrono.parseDate(text);
-                    var msgDateWeekMoment = moment(msgDateWeek).add(user.timezone,'h');
+                    var msgDateWeekMoment = moment(msgDateWeek).subtract(user.timezone,'h');
                     console.log('timestamp moment: ' + msgDateWeekMoment);
                     dayCron = msgDateWeekMoment.day();
                     console.log('day: ' + dayCron);
