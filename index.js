@@ -77,7 +77,24 @@ bot.setGetStartedButton((payload, chat) => {
                                         attachment: 'image',
                                         url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                         typing: true
-                                    })
+                                    }).then(() => {
+                                        var cronRange = `0 ${minCron} ${hourCron} * * ${dayCron}`;
+                                        console.log('CRON range' + cronRange);
+                                        new CronJob(`${cronRange}`, function () {
+                                            console.log('CRON message');
+                                            chat.conversation((convo) => {
+                                                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                                                    convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                                                        chat.say({
+                                                            attachment: 'image',
+                                                            url: `${Strings.words.pictures.url[weeksNum]}`,
+                                                            typing: true
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        }, null, true);
+                                    });
                                 });
                             });
                         });
