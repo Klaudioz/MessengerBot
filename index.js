@@ -110,7 +110,8 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        new CronJob(`0 41 ${hourCron} * * 6`, function () {
+        var cronRange = '0 47 1 * * 6'
+        new CronJob(`${cronRange}`, function () {
             console.log('CRON message');
             chat.conversation((convo) => {
                 convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
