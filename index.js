@@ -110,19 +110,19 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+        new CronJob('0 37 1 * * 6', function () {
             console.log('CRON message');
-            // chat.conversation((convo) => {
-            //     convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-            //         convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-            //             chat.say({
-            //                 attachment: 'image',
-            //                 url: `${Strings.words.pictures.url[weeksNum]}`,
-            //                 typing: true
-            //             });
-            //         });
-            //     });
-            // });
+            chat.conversation((convo) => {
+                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                    convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                        chat.say({
+                            attachment: 'image',
+                            url: `${Strings.words.pictures.url[weeksNum]}`,
+                            typing: true
+                        });
+                    });
+                });
+            });
         }, null, true);
     });
 });
