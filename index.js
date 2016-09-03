@@ -113,10 +113,10 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        new CronJob("0 10 01 * * *", function () {
+        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
             //chat.sendTextMessage('Cron message every minute');
             // console.log(`locale: ${user.timezone}`)
-            //console.log(dueDateFormatted);
+            console.log('Cronned message');
             //console.log(msgDateWeek);
             chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
         }, null, true); //'America/Los_Angeles'
