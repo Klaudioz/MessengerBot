@@ -56,8 +56,7 @@ bot.setGetStartedButton((payload, chat) => {
                 convo.ask(`Tell me the day and hour you want to receive the notifications?`, (payload, convo) => {
                     const text = payload.message.text;
                     msgDateWeek = chrono.parseDate(text);
-                    var msgDateWeekMoment = moment(msgDateWeek).subtract(user.timezone,'h');
-                    console.log('timestamp moment: ' + msgDateWeekMoment);
+                    var msgDateWeekMoment = moment(msgDateWeek).subtract(user.timezone, 'h');
                     dayCron = msgDateWeekMoment.day();
                     console.log('day: ' + dayCron);
                     hourCron = msgDateWeekMoment.hour();
@@ -102,7 +101,6 @@ bot.setGetStartedButton((payload, chat) => {
                                 url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                 typing: true
                             })
-                            //});
                         });
                     });
                 });
@@ -113,12 +111,21 @@ bot.setGetStartedButton((payload, chat) => {
 
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
-        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
-            //chat.sendTextMessage('Cron message every minute');
-            // console.log(`locale: ${user.timezone}`)
-            console.log('Cronned message');
-            //console.log(msgDateWeek);
-            chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
+        chat.conversation((convo) => {
+            new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
+                console.log('CRON message');
+                //chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
+                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                    convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                        //convo.say(`${sayy(`${language}`, Strings.words.weeks.mom)[weeksNum]}`).then(() => {
+                        chat.say({
+                            attachment: 'image',
+                            url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
+                            typing: true
+                        })
+                    });
+                });
+            });
         }, null, true); //'America/Los_Angeles'
     });
 });
