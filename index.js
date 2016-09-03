@@ -78,18 +78,15 @@ bot.setGetStartedButton((payload, chat) => {
                                         url: `${Strings.words.pictures.url[weeksNum]}`, //`${Strings.words.pictures.url[weeksNum]}`
                                         typing: true
                                     }).then(() => {
-                                        var cronRange = `0 ${minCron} ${hourCron} * * ${dayCron}`;
-                                        console.log('CRON range' + cronRange);
-                                        new CronJob(`${cronRange}`, function () {
+                                        new CronJob(`0 ${minCron} ${hourCron} * * ${dayCron}`, function () {
                                             console.log('CRON message');
-                                            chat.conversation((convo) => {
-                                                convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-                                                    convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                                                        chat.say({
-                                                            attachment: 'image',
-                                                            url: `${Strings.words.pictures.url[weeksNum]}`,
-                                                            typing: true
-                                                        });
+                                            weeksNum = Math.floor(40 - Date.diff(dueDateFormatted, chrono.parseDate('Today')).weeks()); //recalculate week
+                                            convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
+                                                convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
+                                                    chat.say({
+                                                        attachment: 'image',
+                                                        url: `${Strings.words.pictures.url[weeksNum]}`,
+                                                        //                     typing: true
                                                     });
                                                 });
                                             });
@@ -102,6 +99,7 @@ bot.setGetStartedButton((payload, chat) => {
                 });
             });
         });
+        
         bot.hear([`${questionBtn1}`], (payload, chat) => {
             chat.conversation((convo) => {
                 convo.ask(`${sayy(`${language}`, Strings.words.asking_menstrual_day)}`, (payload, convo) => {
