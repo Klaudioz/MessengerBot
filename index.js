@@ -119,7 +119,7 @@ bot.on('message', (payload, chat) => {
             //console.log(dueDateFormatted);
             //console.log(msgDateWeek);
             chat.say(`(cron test): Hello, ${user.first_name} !`, { typing: true });
-        }, null, true, jsonContent[`${user.timezone}`]); //'America/Los_Angeles'
+        }, null, true, 'Europe/London'); //'America/Los_Angeles'
     });
 });
 
