@@ -83,22 +83,7 @@ bot.setGetStartedButton((payload, chat) => {
                         });
                     });
                 });
-                convo.end().then(() => {
-                    new CronJob(`${cronRange}`, function () {
-                        console.log('CRON message');
-                        chat.conversation((convo) => {
-                            convo.say(`${sayy(`${language}`, Strings.words.your_week)} ${weeksNum}\n\n${sayy(`${language}`, Strings.words.weeks.baby1)[weeksNum]}`).then(() => {
-                                convo.say(`${sayy(`${language}`, Strings.words.weeks.baby2)[weeksNum]}`).then(() => {
-                                    chat.say({
-                                        attachment: 'image',
-                                        url: `${Strings.words.pictures.url[weeksNum]}`,
-                                        typing: true
-                                    });
-                                });
-                            });
-                        });
-                    }, null, true);
-                })
+                convo.end();
             });
         });
         bot.hear([`${questionBtn1}`], (payload, chat) => {
