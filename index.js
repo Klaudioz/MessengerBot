@@ -111,6 +111,7 @@ bot.setGetStartedButton((payload, chat) => {
 bot.on('message', (payload, chat) => {
     chat.getUserProfile().then((user) => {
         var cronRange = `0 ${minCron} ${hourCron} * * ${dayCron}`;
+        console.log('CRON range' + cronRange);
         new CronJob(`${cronRange}`, function () {
             console.log('CRON message');
             chat.conversation((convo) => {
