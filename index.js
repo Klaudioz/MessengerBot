@@ -7,24 +7,40 @@ var BootBot = require('bootbot');
 var fetch = require('node-fetch');
 var chrono = require('chrono-node');
 var DateDiff = require('date-diff');
+var nodemon = require('nodemon');
 var CronJob = require('cron').CronJob;
 
 var Config = require('./config');
 var Strings = require('./strings');
-//var tz = require('./timezones');
-//var obj = JSON.parse(tz);
 
-var fs = require("fs");
+// var fs = require("fs");
 // Get content from file
-var contents = fs.readFileSync("timezones.json");
+// var contents = fs.readFileSync("timezones.json");
 // Define to JSON type
-var jsonContent = JSON.parse(contents);
+// var jsonContent = JSON.parse(contents);
 // Get Value from JSON
-// console.log("User Name:", jsonContent["-3"]);
 
 var port = process.env.PORT || 5000;
 const GIPHY_URL = `http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=`;
 var msgDateWeek, weeksNum, dueDateFormatted, language, hourCron, dayCron, minCron;
+
+var fs = require("fs");
+var file = process.env.CLOUD_DIR + "/" + "database.db";
+var exists = fs.existsSync(file);
+
+if (!exists) {
+    console.log("Creating DB file.");
+    fs.openSync(file, "w");
+}
+
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(file);
+
+if (!exists) {
+    db.run("CREATE TABLE data (id INTEGER PRIMARY KEY, day INTEGER, hour INTEGER, minute INTEGER, dueDateFormatted TEXT)");
+}
+var stmt_insert = "INSERT INTO data(id,day,hour,minute,dueDateFormatted) VALUES (?,?,?,?,?)"
+var stmt_select = "SELECT day, hour, minute, dueDateFormatted FROM data WHERE id='"+aMessage.account;
 
 var sayy = function (language, obj) {
     var result = traverse(obj).map(function (item) {
@@ -180,6 +196,10 @@ bot.hear(/gif (.*)/i, (payload, chat, data) => {
                     typing: true
                 });
         });
+});
+
+nodemon.on('restart', function () {
+    chat.say('Restarting: ' + dueDateFormatted);
 });
 
 bot.start(port || 5000); //fix heroku problem 60 seconds
