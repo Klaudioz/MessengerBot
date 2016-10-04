@@ -9,9 +9,9 @@
   "author": "klaudioz",
   "license": "ISC",
   "dependencies": {
-    "bootbot": "1.0.6", /* FB bot */
-    "node-fetch": "1.6.0", /* fetch */
-    "cron": "1.1.0", /* cron the message */
+    "bootbot": "1.0.6",
+    "node-fetch": "1.6.0",
+    "cron": "1.1.0",
     "moment": "2.14.1", /* date handling */
     "traverse":"0.6.6", /* language selection */
     "chrono-node":"1.2.4", /*parsing dates */
